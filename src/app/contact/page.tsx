@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ContactForm from '@/components/ContactForm'
+import CalendlyWidget from '@/components/CalendlyWidget'
 
 export const metadata: Metadata = {
   title: 'Contact Dr. Jan Duffy | Las Vegas Strip High-Rise Expert',
@@ -13,12 +13,12 @@ export default function ContactPage() {
       <section className="py-12 px-4 bg-black">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Start Your High-Rise Search</h1>
-          <p className="text-gray-400">Tell me which buildings interest you — I&apos;ll pull current listings and give you the real story on each one.</p>
+          <p className="text-gray-400">Tell me which buildings interest you — pick a time below and I&apos;ll pull current listings and give you the real story on each one.</p>
         </div>
       </section>
       <section className="py-14 px-4">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
-          <ContactForm />
+          <CalendlyWidget url="https://calendly.com/drjanduffy/15min" />
           <aside className="space-y-6">
             <div>
               <h3 className="font-bold text-yellow-400 mb-3">Direct Contact</h3>
