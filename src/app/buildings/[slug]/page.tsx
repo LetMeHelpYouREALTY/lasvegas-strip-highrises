@@ -39,6 +39,14 @@ export default async function BuildingPage({ params }: Props) {
       postalCode: '89117',
       addressCountry: 'US',
     },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '08:00',
+        closes: '20:00',
+      },
+    ],
   }
 
   return (

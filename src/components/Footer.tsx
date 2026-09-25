@@ -41,6 +41,7 @@ export default function Footer() {
           <div className="mt-4 text-xs text-gray-500">
             <p>7475 W Sahara Ave, Suite 100</p>
             <p>Las Vegas, NV 89117</p>
+            <p className="mt-2">Hours: Mon–Sun 8:00 AM–8:00 PM</p>
           </div>
         </div>
       </div>
