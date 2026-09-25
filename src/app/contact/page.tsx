@@ -31,7 +31,7 @@ export default function ContactPage() {
             <div>
               <h3 className="font-bold text-yellow-400 mb-2">Office</h3>
               <address className="not-italic text-sm text-gray-500">
-                7475 W Sahara Ave, Suite 100<br />Las Vegas, NV 89117
+                7475 W Sahara Ave # 100<br />Las Vegas, NV 89117
               </address>
               <p className="mt-2 text-sm text-gray-500">Hours: Monday–Sunday, 8:00 AM–8:00 PM</p>
             </div>

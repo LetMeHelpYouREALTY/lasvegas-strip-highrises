@@ -33,7 +33,7 @@ export default async function BuildingPage({ params }: Props) {
     areaServed: b.name,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '7475 W Sahara Ave, Suite 100',
+      streetAddress: '7475 W Sahara Ave # 100',
       addressLocality: 'Las Vegas',
       addressRegion: 'NV',
       postalCode: '89117',

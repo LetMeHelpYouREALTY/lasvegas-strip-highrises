@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         <h2>Use</h2>
         <p>To respond to your inquiry. We do not sell your information to third parties.</p>
         <h2>Contact</h2>
-        <p>Dr. Jan Duffy · 7475 W Sahara Ave Suite 100, Las Vegas NV 89117 · 702-500-1955 · janet.duffy@bhhsnv.com</p>
+        <p>Dr. Jan Duffy · 7475 W Sahara Ave # 100, Las Vegas NV 89117 · 702-500-1955 · janet.duffy@bhhsnv.com</p>
       </div>
     </main>
   )

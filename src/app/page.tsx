@@ -17,7 +17,7 @@ const jsonLd = {
   description: 'Las Vegas Strip high-rise condo specialist. Turnberry Place, Palms Place, Panorama Towers, CityCenter, Veer, Waldorf Astoria, Trump International.',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '7475 W Sahara Ave, Suite 100',
+    streetAddress: '7475 W Sahara Ave # 100',
     addressLocality: 'Las Vegas',
     addressRegion: 'NV',
     postalCode: '89117',

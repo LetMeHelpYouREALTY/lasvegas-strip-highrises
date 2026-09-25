@@ -39,7 +39,7 @@ export default function Footer() {
             <li><a href="mailto:janet.duffy@bhhsnv.com" className="hover:text-yellow-400 transition">✉️ janet.duffy@bhhsnv.com</a></li>
           </ul>
           <div className="mt-4 text-xs text-gray-500">
-            <p>7475 W Sahara Ave, Suite 100</p>
+            <p>7475 W Sahara Ave # 100</p>
             <p>Las Vegas, NV 89117</p>
             <p className="mt-2">Hours: Mon–Sun 8:00 AM–8:00 PM</p>
           </div>
