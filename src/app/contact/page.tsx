@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'Contact Dr. Jan Duffy | Las Vegas Strip High-Rise Expert',
@@ -7,8 +9,15 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lasvegasstriphighrises.com/contact' },
 }
 
+const breadcrumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact' },
+])
+
 export default function ContactPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen">
       <section className="py-12 px-4 bg-black">
         <div className="max-w-4xl mx-auto">
@@ -49,5 +58,6 @@ export default function ContactPage() {
         </div>
       </section>
     </main>
+    </>
   )
 }

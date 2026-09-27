@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getKcmPosts } from '@/lib/kcm'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const revalidate = 3600
 
@@ -10,11 +12,18 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lasvegasstriphighrises.com/blog' },
 }
 
+const breadcrumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Market News', path: '/blog' },
+])
+
 export default async function BlogPage() {
   const posts = await getKcmPosts()
   const approved = posts.filter((p) => p.approved)
 
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen">
       <section className="py-12 px-4 bg-black">
         <div className="max-w-5xl mx-auto">
@@ -43,5 +52,6 @@ export default async function BlogPage() {
         </div>
       </section>
     </main>
+    </>
   )
 }

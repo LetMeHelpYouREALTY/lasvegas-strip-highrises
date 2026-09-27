@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import NearbyAmenitiesSection from '@/components/maps/NearbyAmenitiesSection'
 import { buildings, getBuilding } from '@/lib/buildings'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -26,34 +28,15 @@ export default async function BuildingPage({ params }: Props) {
   const b = getBuilding(slug)
   if (!b) notFound()
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'RealEstateAgent',
-    name: 'Dr. Jan Duffy',
-    url: `https://lasvegasstriphighrises.com/buildings/${slug}`,
-    telephone: '702-299-6607',
-    areaServed: b.name,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '7475 W Sahara Ave, Suite 100',
-      addressLocality: 'Las Vegas',
-      addressRegion: 'NV',
-      postalCode: '89117',
-      addressCountry: 'US',
-    },
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '08:00',
-        closes: '20:00',
-      },
-    ],
-  }
+  const breadcrumbs = breadcrumbListJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Buildings', path: '/buildings' },
+    { name: b.name, path: `/buildings/${slug}` },
+  ])
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={breadcrumbs} />
       <main className="bg-gray-950 min-h-screen">
         <section className="py-16 px-4 bg-gradient-to-b from-black to-gray-950">
           <div className="max-w-5xl mx-auto">

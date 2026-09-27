@@ -14,7 +14,11 @@ export default function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, source: 'lasvegasstriphighrises.com' }),
+        body: JSON.stringify({
+          ...data,
+          source: 'lasvegasstriphighrises.com',
+          sourceUrl: window.location.href,
+        }),
       })
       setState(res.ok ? 'success' : 'error')
     } catch {
@@ -56,7 +60,12 @@ export default function ContactForm() {
         <textarea name="message" rows={3}
           className="w-full border border-gray-700 bg-gray-900 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-yellow-500" />
       </div>
-      {state === 'error' && <p className="text-red-400 text-sm">Something went wrong — call 702-299-6607.</p>}
+      {state === 'error' && (
+        <p className="text-red-400 text-sm">
+          Sorry, something went wrong sending your message. Please call or text Dr. Jan Duffy at{' '}
+          <a href="tel:7022996607" className="underline font-semibold">702-299-6607</a>.
+        </p>
+      )}
       <button type="submit" disabled={state === 'loading'}
         className="w-full bg-yellow-500 text-gray-950 font-bold py-3 rounded-lg hover:bg-yellow-400 transition disabled:opacity-60">
         {state === 'loading' ? 'Sending...' : 'Send Message'}

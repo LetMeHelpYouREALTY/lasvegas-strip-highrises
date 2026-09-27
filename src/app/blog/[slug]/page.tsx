@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getKcmPosts, getKcmPost } from '@/lib/kcm'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const revalidate = 3600
 interface Props { params: Promise<{ slug: string }> }
@@ -26,7 +28,15 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getKcmPost(slug)
   if (!post || !post.approved) notFound()
 
+  const breadcrumbs = breadcrumbListJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Market News', path: '/blog' },
+    { name: post.title, path: `/blog/${slug}` },
+  ])
+
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen">
       <div className="max-w-3xl mx-auto px-4 py-14">
         <p className="text-yellow-500 font-semibold text-sm mb-2">{post.category}</p>
@@ -51,5 +61,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
     </main>
+    </>
   )
 }

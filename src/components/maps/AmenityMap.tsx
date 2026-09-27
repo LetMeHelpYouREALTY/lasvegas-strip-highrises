@@ -11,6 +11,8 @@ import {
   placeDirectionsUrl,
 } from '@/lib/amenities'
 import { COMMUNITY } from '@/lib/community'
+import { loadGoogleMaps, mapsAuthFailed } from '@/lib/google-maps-loader'
+import { searchCategory } from '@/lib/places-search'
 
 type MapPlace = {
   id: string
@@ -18,7 +20,6 @@ type MapPlace = {
   address: string
   lat: number
   lng: number
-  rating?: number
   mapsUri?: string
 }
 
@@ -31,51 +32,78 @@ type AmenityMapProps = {
 
 const MAP_HEIGHT_CLASS = 'min-h-[22rem] h-[28rem] md:h-[32rem]'
 
-function loadGoogleMapsScript(apiKey: string): Promise<void> {
-  if (typeof window === 'undefined') return Promise.reject(new Error('no window'))
-  if (window.google?.maps) return Promise.resolve()
-
-  return new Promise((resolve, reject) => {
-    const existing = document.querySelector<HTMLScriptElement>('script[data-amenity-map]')
-    if (existing) {
-      existing.addEventListener('load', () => resolve())
-      existing.addEventListener('error', () => reject(new Error('Maps script failed')))
-      return
-    }
-
-    const script = document.createElement('script')
-    script.dataset.amenityMap = 'true'
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async`
-    script.async = true
-    script.defer = true
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('Maps script failed'))
-    document.head.appendChild(script)
-  })
+function displayNameText(
+  displayName: google.maps.places.Place['displayName'],
+): string {
+  if (displayName == null) return 'Place'
+  if (typeof displayName === 'string') return displayName
+  const named = displayName as { text?: string }
+  return named.text ?? 'Place'
 }
 
-function buildInfoContent(place: MapPlace): string {
-  const rating =
-    place.rating != null
-      ? `<p class="text-sm text-gray-600 mt-1">Rating: ${place.rating.toFixed(1)}</p>`
-      : ''
-  const dir = place.mapsUri
-    ? place.mapsUri
-    : placeDirectionsUrl(place.name, place.address)
-  return `<div class="p-1 max-w-[240px]">
-    <p class="font-semibold text-gray-900">${place.name}</p>
-    ${rating}
-    <p class="text-sm text-gray-600 mt-1">${place.address}</p>
-    <a href="${dir}" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-700 underline mt-2 inline-block">Directions</a>
-  </div>`
+function placeToMapPlace(place: google.maps.places.Place, id: string): MapPlace | null {
+  if (!place.location) return null
+  const { lat, lng } = place.location.toJSON()
+  return {
+    id,
+    name: displayNameText(place.displayName),
+    address: place.formattedAddress ?? '',
+    lat,
+    lng,
+    mapsUri: place.googleMapsURI ?? undefined,
+  }
 }
 
-function communityInfoContent(): string {
-  return `<div class="p-1 max-w-[240px]">
-    <p class="font-semibold text-gray-900">${COMMUNITY.name}</p>
-    <p class="text-sm text-gray-600 mt-1">${COMMUNITY.referenceAddress.street}, ${COMMUNITY.referenceAddress.locality}, ${COMMUNITY.referenceAddress.region}</p>
-    <a href="${directionsUrl(COMMUNITY.center.lat, COMMUNITY.center.lng)}" target="_blank" rel="noopener noreferrer" class="text-sm text-blue-700 underline mt-2 inline-block">Directions</a>
-  </div>`
+function buildPlaceInfoElement(place: MapPlace): HTMLElement {
+  const wrap = document.createElement('div')
+  wrap.className = 'p-1 max-w-[240px]'
+
+  const title = document.createElement('p')
+  title.className = 'font-semibold text-gray-900'
+  title.textContent = place.name
+  wrap.appendChild(title)
+
+  if (place.address) {
+    const addr = document.createElement('p')
+    addr.className = 'text-sm text-gray-600 mt-1'
+    addr.textContent = place.address
+    wrap.appendChild(addr)
+  }
+
+  const dir = document.createElement('a')
+  dir.className = 'text-sm text-blue-700 underline mt-2 inline-block'
+  dir.target = '_blank'
+  dir.rel = 'noopener noreferrer'
+  dir.textContent = 'Directions'
+  dir.href = place.mapsUri ?? placeDirectionsUrl(place.name, place.address)
+  wrap.appendChild(dir)
+
+  return wrap
+}
+
+function buildCommunityInfoElement(): HTMLElement {
+  const wrap = document.createElement('div')
+  wrap.className = 'p-1 max-w-[240px]'
+
+  const title = document.createElement('p')
+  title.className = 'font-semibold text-gray-900'
+  title.textContent = COMMUNITY.name
+  wrap.appendChild(title)
+
+  const addr = document.createElement('p')
+  addr.className = 'text-sm text-gray-600 mt-1'
+  addr.textContent = `${COMMUNITY.referenceAddress.street}, ${COMMUNITY.referenceAddress.locality}, ${COMMUNITY.referenceAddress.region}`
+  wrap.appendChild(addr)
+
+  const dir = document.createElement('a')
+  dir.className = 'text-sm text-blue-700 underline mt-2 inline-block'
+  dir.target = '_blank'
+  dir.rel = 'noopener noreferrer'
+  dir.textContent = 'Directions'
+  dir.href = directionsUrl(COMMUNITY.center.lat, COMMUNITY.center.lng)
+  wrap.appendChild(dir)
+
+  return wrap
 }
 
 export default function AmenityMap({
@@ -96,13 +124,32 @@ export default function AmenityMap({
 
   const [inView, setInView] = useState(false)
   const [activeCategory, setActiveCategory] = useState<AmenityCategoryId>(defaultCategory)
-  const [apiFailed, setApiFailed] = useState(false)
-  const useFallback = !apiKey || apiFailed
+  const [useFallback, setUseFallback] = useState(!apiKey || mapsAuthFailed)
   const [loading, setLoading] = useState(false)
 
   const visibleCategories = compact
     ? AMENITY_CATEGORY_ORDER.slice(0, 6)
     : AMENITY_CATEGORY_ORDER
+
+  const clearMarkers = useCallback(() => {
+    markersRef.current.forEach((m) => m.setMap(null))
+    markersRef.current = []
+    communityMarkerRef.current?.setMap(null)
+    communityMarkerRef.current = null
+    infoRef.current?.close()
+  }, [])
+
+  const enterFallback = useCallback(() => {
+    clearMarkers()
+    mapRef.current = null
+    setUseFallback(true)
+  }, [clearMarkers])
+
+  useEffect(() => {
+    const onAuthFailure = () => enterFallback()
+    window.addEventListener('gmaps:auth-failure', onAuthFailure)
+    return () => window.removeEventListener('gmaps:auth-failure', onAuthFailure)
+  }, [enterFallback])
 
   useEffect(() => {
     const el = rootRef.current
@@ -117,14 +164,6 @@ export default function AmenityMap({
     return () => observer.disconnect()
   }, [])
 
-  const clearMarkers = useCallback(() => {
-    markersRef.current.forEach((m) => m.setMap(null))
-    markersRef.current = []
-    communityMarkerRef.current?.setMap(null)
-    communityMarkerRef.current = null
-    infoRef.current?.close()
-  }, [])
-
   const showCommunityMarker = useCallback((map: google.maps.Map) => {
     const marker = new google.maps.Marker({
       map,
@@ -134,7 +173,7 @@ export default function AmenityMap({
     })
     marker.addListener('click', () => {
       if (!infoRef.current) infoRef.current = new google.maps.InfoWindow()
-      infoRef.current.setContent(communityInfoContent())
+      infoRef.current.setContent(buildCommunityInfoElement())
       infoRef.current.open({ map, anchor: marker })
     })
     communityMarkerRef.current = marker
@@ -158,7 +197,7 @@ export default function AmenityMap({
         })
         marker.addListener('click', () => {
           if (!infoRef.current) infoRef.current = new google.maps.InfoWindow()
-          infoRef.current.setContent(buildInfoContent(place))
+          infoRef.current.setContent(buildPlaceInfoElement(place))
           infoRef.current.open({ map, anchor: marker })
         })
         markersRef.current.push(marker)
@@ -169,6 +208,7 @@ export default function AmenityMap({
         map.fitBounds(bounds)
       } else {
         map.setCenter(COMMUNITY.center)
+        map.setZoom(14)
       }
     },
     [clearMarkers, showCommunityMarker],
@@ -178,38 +218,15 @@ export default function AmenityMap({
     async (map: google.maps.Map, category: AmenityCategoryId) => {
       setLoading(true)
       try {
-        await loadGoogleMapsScript(apiKey!)
-        await google.maps.importLibrary('places')
-        const { Place } = google.maps.places
-        const config = AMENITY_CATEGORIES[category]
-        const { places: results } = await Place.searchNearby({
-          fields: ['displayName', 'location', 'formattedAddress', 'rating', 'googleMapsURI'],
-          locationRestriction: {
-            center: COMMUNITY.center,
-            radius: COMMUNITY.searchRadiusMeters,
-          },
-          includedPrimaryTypes: config.includedPrimaryTypes,
-          maxResultCount: 15,
-          rankPreference: google.maps.places.RankPreference.POPULARITY,
-        })
+        const results = await searchCategory(
+          COMMUNITY.center,
+          category,
+          COMMUNITY.searchRadiusMeters,
+        )
+        const mapped = results
+          .map((p, i) => placeToMapPlace(p, `${category}-${i}`))
+          .filter((p): p is MapPlace => p !== null)
 
-        const mapped: MapPlace[] = results
-          .filter((p) => p.location && p.displayName)
-          .map((p, i) => {
-            const displayName =
-              typeof p.displayName === 'string' ? p.displayName : p.displayName?.text ?? 'Place'
-            return {
-            id: `${category}-${i}`,
-            name: displayName,
-            address: p.formattedAddress ?? '',
-            lat: p.location!.lat,
-            lng: p.location!.lng,
-            rating: p.rating,
-            mapsUri: p.googleMapsURI,
-          }})
-
-
-        if (mapped.length === 0) throw new Error('No results')
         renderMarkers(map, mapped)
       } catch {
         renderMarkers(map, [])
@@ -217,18 +234,17 @@ export default function AmenityMap({
         setLoading(false)
       }
     },
-    [apiKey, renderMarkers],
+    [renderMarkers],
   )
 
   useEffect(() => {
-    if (!inView || !apiKey) return
+    if (!inView || useFallback || !apiKey || mapsAuthFailed) return
 
     const mapsApiKey = apiKey
     let cancelled = false
 
-    async function init() {
-      try {
-        await loadGoogleMapsScript(mapsApiKey)
+    loadGoogleMaps(mapsApiKey)
+      .then(async () => {
         if (cancelled || !mapContainerRef.current) return
         await google.maps.importLibrary('maps')
 
@@ -245,16 +261,15 @@ export default function AmenityMap({
         }
 
         await fetchNearby(mapRef.current, activeCategory)
-      } catch {
-        if (!cancelled) setApiFailed(true)
-      }
-    }
+      })
+      .catch(() => {
+        if (!cancelled) enterFallback()
+      })
 
-    init()
     return () => {
       cancelled = true
     }
-  }, [inView, apiKey, mapId, activeCategory, fetchNearby])
+  }, [inView, apiKey, mapId, activeCategory, fetchNearby, useFallback, enterFallback])
 
   const fallbackList = curatedPlacesForCategory(activeCategory)
 
@@ -320,7 +335,7 @@ export default function AmenityMap({
 
       <div className="mt-4">
         <h3 className="text-sm font-semibold text-yellow-400 uppercase tracking-wide mb-2">
-          {useFallback ? 'Featured nearby places' : 'Also nearby'}
+          Featured places near {COMMUNITY.shortName}
           {' · '}
           {AMENITY_CATEGORIES[activeCategory].label}
         </h3>
@@ -341,13 +356,6 @@ export default function AmenityMap({
             </li>
           ))}
         </ul>
-        {useFallback && (
-          <p className="text-gray-500 text-xs mt-3">
-            Map preview uses Google&apos;s embed. Set{' '}
-            <code className="text-gray-400">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> in Vercel for the
-            full interactive amenity search.
-          </p>
-        )}
       </div>
     </div>
   )

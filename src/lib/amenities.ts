@@ -19,6 +19,7 @@ export type CuratedPlace = {
   address: string
   category: AmenityCategoryId
   schemaType: string
+  sourceUrl: string
   note?: string
 }
 
@@ -106,26 +107,29 @@ export const AMENITY_CATEGORIES: Record<
 
 /**
  * Verified places for fallback UI, on-page copy, and ItemList schema.
- * Names and street addresses only — no invented ratings or drive times here.
+ * Names and street addresses match each sourceUrl (official listing).
  */
 export const CURATED_PLACES: CuratedPlace[] = [
   {
-    name: 'Gordon Ramsay Hell\'s Kitchen',
+    name: "Gordon Ramsay Hell's Kitchen",
     address: '3570 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'restaurants',
     schemaType: 'Restaurant',
+    sourceUrl: 'https://www.caesars.com/caesars-palace/restaurants/hells-kitchen',
   },
   {
     name: 'Bacchanal Buffet',
     address: '3570 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'restaurants',
     schemaType: 'Restaurant',
+    sourceUrl: 'https://www.caesars.com/caesars-palace/restaurants/bacchanal-buffet',
   },
   {
     name: 'Mon Ami Gabi',
     address: '3655 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'restaurants',
     schemaType: 'Restaurant',
+    sourceUrl: 'https://www.monamigabi.com/las-vegas/',
   },
   {
     name: 'The Park Las Vegas',
@@ -133,70 +137,65 @@ export const CURATED_PLACES: CuratedPlace[] = [
     category: 'entertainment',
     schemaType: 'TouristAttraction',
     note: 'Outdoor dining and event space between Park MGM and T-Mobile Arena.',
+    sourceUrl: 'https://www.theparkvegas.com/',
   },
   {
     name: 'The Sphere',
     address: '255 Sands Ave, Las Vegas, NV 89169',
     category: 'entertainment',
     schemaType: 'TouristAttraction',
+    sourceUrl: 'https://www.thesphere.com/',
   },
   {
     name: 'Crystals at CityCenter',
     address: '3720 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'shopping',
     schemaType: 'ShoppingCenter',
+    sourceUrl: 'https://www.crystalsatcitycenter.com/',
   },
   {
     name: 'Fashion Show Mall',
     address: '3200 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'shopping',
     schemaType: 'ShoppingCenter',
-  },
-  {
-    name: 'Target',
-    address: '4215 S Grand Canyon Dr, Las Vegas, NV 89147',
-    category: 'grocery',
-    schemaType: 'GroceryStore',
-    note: 'Full grocery and household — short drive west of the Strip corridor.',
+    sourceUrl: 'https://www.fashionshowlasvegas.com/',
   },
   {
     name: 'Whole Foods Market',
-    address: '6689 Las Vegas Blvd S, Las Vegas, NV 89119',
+    address: '6689 S Las Vegas Blvd, Las Vegas, NV 89119',
     category: 'grocery',
     schemaType: 'GroceryStore',
     note: 'Town Square Las Vegas, south of the core Strip towers.',
-  },
-  {
-    name: 'Las Vegas Athletic Clubs — Summerlin',
-    address: '10177 W Charleston Blvd, Las Vegas, NV 89135',
-    category: 'fitness',
-    schemaType: 'ExerciseGym',
-    note: 'Regional club; many high-rise residents also use building gyms and hotel fitness centers.',
+    sourceUrl: 'https://www.wholefoodsmarket.com/stores/lvb',
   },
   {
     name: 'Starbucks',
-    address: '3730 S Las Vegas Blvd, Las Vegas, NV 89109',
+    address: '3730 S Las Vegas Blvd, Las Vegas, NV 89158',
     category: 'cafes',
     schemaType: 'CafeOrCoffeeShop',
-    note: 'CityCenter campus.',
+    note: 'ARIA Resort second-level promenade (CityCenter campus).',
+    sourceUrl: 'https://aria.mgmresorts.com/en/restaurants/starbucks.html',
   },
   {
     name: 'Sunrise Hospital & Medical Center',
     address: '3186 S Maryland Pkwy, Las Vegas, NV 89109',
     category: 'healthcare',
     schemaType: 'Hospital',
+    sourceUrl: 'https://www.sunrisehospital.com/',
   },
   {
     name: 'Valley Hospital Medical Center',
     address: '620 Shadow Ln, Las Vegas, NV 89106',
     category: 'healthcare',
     schemaType: 'Hospital',
+    sourceUrl: 'https://www.valleyhospital.net/',
   },
   {
     name: 'Walgreens',
-    address: '3645 S Las Vegas Blvd, Las Vegas, NV 89109',
+    address: '3765 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'pharmacies',
     schemaType: 'Pharmacy',
+    sourceUrl: 'https://www.walgreens.com/locator/walgreens-3765-las-vegas-blvd-s-las-vegas-nv-89109/id=4763',
   },
   {
     name: 'Bellagio Conservatory & Botanical Gardens',
@@ -204,18 +203,21 @@ export const CURATED_PLACES: CuratedPlace[] = [
     category: 'parks',
     schemaType: 'Park',
     note: 'Seasonal indoor botanical display on the Strip.',
+    sourceUrl: 'https://bellagio.mgmresorts.com/en/amenities/conservatory-botanical-garden.html',
   },
   {
     name: 'Wynn Golf Club',
     address: '3131 S Las Vegas Blvd, Las Vegas, NV 89109',
     category: 'golf',
     schemaType: 'GolfCourse',
+    sourceUrl: 'https://www.wynnlasvegas.com/experiences/golf',
   },
   {
     name: 'University of Nevada, Las Vegas (UNLV)',
     address: '4505 S Maryland Pkwy, Las Vegas, NV 89154',
     category: 'schools',
     schemaType: 'CollegeOrUniversity',
+    sourceUrl: 'https://www.unlv.edu/',
   },
 ]
 

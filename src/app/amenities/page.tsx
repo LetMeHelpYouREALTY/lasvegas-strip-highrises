@@ -24,7 +24,7 @@ const FAQ_ITEMS = [
   {
     question: 'What grocery stores are near Las Vegas Strip high-rises?',
     answer:
-      'Residents typically shop at Target on Grand Canyon Drive, Whole Foods at Town Square on Las Vegas Blvd South, or Walgreens and convenience options along the Strip corridor — most buildings are a short drive from full grocery runs.',
+      'Residents often shop at Whole Foods Market at Town Square on Las Vegas Boulevard South, use pharmacy and convenience options along the Strip corridor, or schedule delivery from building concierge desks — most towers are a short drive from full grocery runs.',
   },
   {
     question: 'How far are Strip high-rise condos from the Las Vegas Strip?',
@@ -54,7 +54,12 @@ const FAQ_ITEMS = [
   {
     question: 'Is there golf near Las Vegas Strip condos?',
     answer:
-      'Wynn Golf Club sits on the north Strip corridor; additional public and resort courses are a short drive into the valley, while many buyers also use hotel and building fitness amenities daily.',
+      'Wynn Golf Club sits on the north Strip corridor; additional public and resort courses are a short drive into the valley, while many households also use hotel and building fitness amenities daily.',
+  },
+  {
+    question: 'Which CCSD schools are assigned to Strip high-rise addresses?',
+    answer:
+      'Clark County School District (CCSD) assignments depend on your exact building address and can change with boundary updates. Verify current zoning with the CCSD Zoning Search before you rely on a particular campus.',
   },
   {
     question: 'How far is Downtown Summerlin from the Strip high-rise market?',
@@ -194,7 +199,7 @@ export default function AmenitiesPage() {
           <div className="max-w-5xl mx-auto prose prose-invert">
             <h2 className="text-white">Dining &amp; nightlife</h2>
             <p className="text-gray-400">
-              Strip high-rise living puts world-class restaurants in walking distance. Along the mid-Strip,
+              Strip high-rise living puts destination restaurants in walking distance. Along the mid-Strip,
               Gordon Ramsay Hell&apos;s Kitchen, Bacchanal Buffet, and Mon Ami Gabi are established destinations
               on or just off Las Vegas Boulevard. Residents at Harmon Avenue towers and CityCenter often walk to
               Aria, Bellagio, and Crystals for additional chef-driven options without crossing a freeway.
@@ -217,7 +222,7 @@ export default function AmenitiesPage() {
             <h2 className="text-white">Grocery &amp; daily needs</h2>
             <p className="text-gray-400">
               Walgreens on Las Vegas Boulevard supports pharmacy and convenience runs. Full grocery trips often
-              mean Target on Grand Canyon Drive or Whole Foods at Town Square — plan a short drive or delivery
+              mean Whole Foods at Town Square south on Las Vegas Boulevard — plan a short drive or delivery
               from your building, a common pattern for high-rise owners.
             </p>
 
@@ -248,9 +253,9 @@ export default function AmenitiesPage() {
 
             <h2 className="text-white">Schools &amp; higher education</h2>
             <p className="text-gray-400">
-              Strip high-rise buyers are often empty-nesters, second-home owners, or investors; when education
-              matters, UNLV on Maryland Parkway is the major university campus serving the valley. Clark County
-              School District campuses sit in neighborhoods off the resort corridor.
+              When education matters, UNLV on Maryland Parkway is the major university campus serving the valley.
+              For K–12 assignments, use the CCSD Zoning Search with your building&apos;s street address — campuses
+              sit in neighborhoods off the resort corridor and boundaries can change.
             </p>
           </div>
         </section>

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import NearbyAmenitiesSection from '@/components/maps/NearbyAmenitiesSection'
 import { buildings } from '@/lib/buildings'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'All Las Vegas Strip High-Rise Buildings | Condos For Sale',
@@ -9,8 +11,15 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lasvegasstriphighrises.com/buildings' },
 }
 
+const breadcrumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Buildings', path: '/buildings' },
+])
+
 export default function BuildingsPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen">
       <section className="py-14 px-4">
         <div className="max-w-5xl mx-auto">
@@ -42,5 +51,6 @@ export default function BuildingsPage() {
         defaultCategory="parking"
       />
     </main>
+    </>
   )
 }
