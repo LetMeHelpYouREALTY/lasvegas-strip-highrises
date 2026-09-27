@@ -55,9 +55,9 @@ export default function HomePage() {
               HOA fee, and rental program from a 35-year Las Vegas specialist.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
+              <Link href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
                 Browse Buildings
-              </a>
+              </Link>
               <a href="tel:7022996607" className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition">
                 Call 702-299-6607
               </a>

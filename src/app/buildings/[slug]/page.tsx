@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { buildings, getBuilding } from '@/lib/buildings'
 
@@ -101,7 +102,7 @@ export default async function BuildingPage({ params }: Props) {
 
         <section className="border-t border-gray-800 py-8 px-4">
           <div className="max-w-5xl mx-auto flex items-center justify-between">
-            <a href="/buildings" className="text-yellow-500 hover:underline font-medium">← All Buildings</a>
+            <Link href="/buildings" className="text-yellow-500 hover:underline font-medium">← All Buildings</Link>
             <a href="/contact" className="bg-yellow-500 text-gray-950 font-bold px-6 py-2 rounded-lg hover:bg-yellow-400 transition text-sm">
               Get Expert Guidance
             </a>
