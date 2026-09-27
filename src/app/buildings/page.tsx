@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import NearbyAmenitiesSection from '@/components/maps/NearbyAmenitiesSection'
 import { buildings } from '@/lib/buildings'
 
 export const metadata: Metadata = {
@@ -35,6 +36,11 @@ export default function BuildingsPage() {
           </div>
         </div>
       </section>
+      <NearbyAmenitiesSection
+        title="What's Nearby Every Strip Tower"
+        subtitle="Compare buildings, then explore restaurants, parking, and services around the corridor."
+        defaultCategory="parking"
+      />
     </main>
   )
 }

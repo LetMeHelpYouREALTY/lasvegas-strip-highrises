@@ -5,7 +5,7 @@ const BASE = 'https://lasvegasstriphighrises.com'
 const lastmod = process.env.BUILD_DATE_ISO ?? new Date().toISOString()
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const static_pages = ['', '/about', '/contact', '/blog', '/buildings', '/privacy-policy'].map((p) => ({
+  const static_pages = ['', '/about', '/contact', '/blog', '/buildings', '/amenities', '/privacy-policy'].map((p) => ({
     url: `${BASE}${p}`,
     lastModified: lastmod,
     changeFrequency: 'weekly' as const,

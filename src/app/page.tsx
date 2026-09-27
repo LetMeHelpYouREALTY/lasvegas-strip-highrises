@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import NearbyAmenitiesSection from '@/components/maps/NearbyAmenitiesSection'
 import { buildings } from '@/lib/buildings'
 
 export const metadata: Metadata = {
@@ -55,9 +56,9 @@ export default function HomePage() {
               HOA fee, and rental program from a 35-year Las Vegas specialist.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
+              <Link href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
                 Browse Buildings
-              </a>
+              </Link>
               <a href="tel:7022996607" className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition">
                 Call 702-299-6607
               </a>
@@ -106,8 +107,10 @@ export default function HomePage() {
           </div>
         </section>
 
+        <NearbyAmenitiesSection />
+
         {/* Why High-Rise */}
-        <section className="py-16 px-4 bg-gray-900">
+        <section className="py-16 px-4 bg-gray-950">
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             <div>
               <h2 className="text-3xl font-bold text-white mb-4">
