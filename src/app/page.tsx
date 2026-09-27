@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { buildings } from '@/lib/buildings'
+import { faqPageJsonLd, stripHighRiseFaqs } from '@/lib/seo/faq'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Buyer Guide',
@@ -8,10 +10,10 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lasvegasstriphighrises.com' },
 }
 
-const jsonLd = {
+const agentJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
-  name: 'Dr. Jan Duffy — Las Vegas Strip High-Rise Specialist',
+  name: 'Dr. Jan Duffy',
   url: 'https://lasvegasstriphighrises.com',
   telephone: '702-299-6607',
   description: 'Las Vegas Strip high-rise condo specialist. Turnberry Place, Palms Place, Panorama Towers, CityCenter, Veer, Waldorf Astoria, Trump International.',
@@ -37,7 +39,7 @@ const jsonLd = {
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={[agentJsonLd, faqPageJsonLd(stripHighRiseFaqs)]} />
       <main>
         {/* Hero — dark luxury */}
         <section className="relative bg-gray-950 text-white py-24 px-4 overflow-hidden">
@@ -147,6 +149,26 @@ export default function HomePage() {
                 Call 702-299-6607
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-16 px-4 bg-gray-950 border-t border-gray-800" id="faq">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-white text-center mb-3">
+              Strip High-Rise Condo FAQs
+            </h2>
+            <p className="text-center text-gray-400 mb-10 text-sm">
+              General guidance for buyers exploring Las Vegas Strip towers — building rules always vary.
+            </p>
+            <dl className="space-y-6">
+              {stripHighRiseFaqs.map((faq) => (
+                <div key={faq.question} className="border border-gray-800 rounded-xl p-5 bg-gray-900/50">
+                  <dt className="font-semibold text-yellow-400 mb-2">{faq.question}</dt>
+                  <dd className="text-gray-300 text-sm leading-relaxed">{faq.answer}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 

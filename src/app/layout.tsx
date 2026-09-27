@@ -19,6 +19,24 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://lasvegasstriphighrises.com',
     siteName: 'Las Vegas Strip Highrises',
+    title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Guide',
+    description:
+      'Las Vegas Strip high-rise condos for sale — Turnberry Place, Palms Place, Panorama Towers, One Las Vegas, Waldorf Astoria & more. Dr. Jan Duffy · 702-299-6607.',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Las Vegas Strip high-rise condos — Dr. Jan Duffy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Las Vegas Strip High-Rise Condos For Sale',
+    description:
+      'Expert guidance on Strip high-rise condos — Turnberry Place, Palms Place, Panorama Towers & more. Dr. Jan Duffy · 702-299-6607.',
+    images: ['/opengraph-image'],
   },
 }
 

@@ -1,10 +1,20 @@
 import type { Metadata } from 'next'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
+
 export const metadata: Metadata = {
   title: 'Privacy Policy | Las Vegas Strip Highrises',
   robots: { index: false },
 }
+const breadcrumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'Privacy Policy', path: '/privacy-policy' },
+])
+
 export default function PrivacyPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen max-w-3xl mx-auto px-4 py-16">
       <h1 className="text-3xl font-bold text-white mb-2">Privacy Policy</h1>
       <p className="text-gray-500 text-sm mb-10">Last updated: May 12, 2026</p>
@@ -18,5 +28,6 @@ export default function PrivacyPage() {
         <p>Dr. Jan Duffy · 7475 W Sahara Ave Suite 100, Las Vegas NV 89117 · 702-500-1955 · janet.duffy@bhhsnv.com</p>
       </div>
     </main>
+    </>
   )
 }

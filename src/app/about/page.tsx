@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
+import { JsonLd } from '@/lib/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'About Dr. Jan Duffy | Las Vegas Strip High-Rise Specialist',
@@ -6,8 +8,15 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://lasvegasstriphighrises.com/about' },
 }
 
+const breadcrumbs = breadcrumbListJsonLd([
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+])
+
 export default function AboutPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbs} />
     <main className="bg-gray-950 min-h-screen">
       <section className="py-16 px-4 bg-black">
         <div className="max-w-4xl mx-auto">
@@ -47,5 +56,6 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+    </>
   )
 }
