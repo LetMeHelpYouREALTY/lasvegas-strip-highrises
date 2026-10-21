@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import NearbyAmenitiesSection from '@/components/maps/NearbyAmenitiesSection'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
 
@@ -55,6 +56,11 @@ export default function AboutPage() {
           </aside>
         </div>
       </section>
+      <NearbyAmenitiesSection
+        title="Hyperlocal Strip Knowledge"
+        subtitle="I help buyers understand not just floor plans — but how daily life works on and around Las Vegas Boulevard."
+        defaultCategory="entertainment"
+      />
     </main>
     </>
   )

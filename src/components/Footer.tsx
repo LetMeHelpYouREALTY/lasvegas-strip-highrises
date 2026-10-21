@@ -32,6 +32,12 @@ export default function Footer() {
           </ul>
         </div>
         <div>
+          <h4 className="font-semibold mb-3 text-gray-400 text-sm uppercase tracking-wide">Explore</h4>
+          <ul className="space-y-2 text-sm text-gray-400 mb-6">
+            <li><Link href="/amenities" className="hover:text-yellow-400 transition">Nearby Amenities</Link></li>
+            <li><Link href="/buildings" className="hover:text-yellow-400 transition">All Buildings</Link></li>
+            <li><Link href="/blog" className="hover:text-yellow-400 transition">Market News</Link></li>
+          </ul>
           <h4 className="font-semibold mb-3 text-gray-400 text-sm uppercase tracking-wide">Contact</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li><a href="tel:7022996607" className="hover:text-yellow-400 transition">📞 702-299-6607</a></li>
