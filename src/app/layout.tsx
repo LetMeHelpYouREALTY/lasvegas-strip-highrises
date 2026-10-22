@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col bg-gray-950">
         <Header />
         <div className="flex-1">{children}</div>
+        <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <Footer />
       </body>
     </html>
