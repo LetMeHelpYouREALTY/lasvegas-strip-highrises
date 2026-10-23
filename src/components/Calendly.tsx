@@ -1,36 +1,46 @@
 'use client'
 
 import Script from 'next/script'
-import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
+import { useCallback, useEffect, useRef } from 'react'
 import { calendlyUrl } from '@/lib/calendly'
 
 type CalendlyApi = {
   initPopupWidget: (o: { url: string }) => void
   initInlineWidget: (o: { url: string; parentElement: HTMLElement }) => void
   initBadgeWidget: (o: { url: string; text: string; color: string; textColor: string; branding?: boolean }) => void
+  destroyBadgeWidget?: () => void
 }
 
 const calendly = () => (window as unknown as { Calendly?: CalendlyApi }).Calendly
 
 /** Loads Calendly once and shows the floating badge on every page. */
 export function CalendlyScript() {
+  const pathname = usePathname() || '/'
+
+  // Rebuild the badge on each route change so utm_campaign matches the page.
+  const initBadge = useCallback(() => {
+    const api = calendly()
+    if (!api) return
+    if (api.destroyBadgeWidget) api.destroyBadgeWidget()
+    else document.querySelector('.calendly-badge-widget')?.remove()
+    api.initBadgeWidget({
+      url: calendlyUrl('tour', 'badge', pathname.slice(1) || 'home'),
+      text: 'Schedule a showing',
+      color: '#eab308',
+      textColor: '#030712',
+      branding: false,
+    })
+  }, [pathname])
+
+  useEffect(() => {
+    initBadge()
+  }, [initBadge])
+
   return (
     <>
       <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-        onLoad={() => {
-          if (document.querySelector('.calendly-badge-widget')) return
-          calendly()?.initBadgeWidget({
-            url: calendlyUrl('tour', 'badge', window.location.pathname.slice(1) || 'home'),
-            text: 'Schedule a showing',
-            color: '#eab308',
-            textColor: '#030712',
-            branding: false,
-          })
-        }}
-      />
+      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" onLoad={initBadge} />
     </>
   )
 }
