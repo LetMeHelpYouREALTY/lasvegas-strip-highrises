@@ -5,6 +5,7 @@ import { buildings, getBuilding } from '@/lib/buildings'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
 import { CalendlyButton } from '@/components/Calendly'
+import { RealScoutListings } from '@/components/RealScoutListings'
 import { calendlyUrl } from '@/lib/calendly'
 
 interface Props { params: Promise<{ slug: string }> }
@@ -87,6 +88,8 @@ export default async function BuildingPage({ params }: Props) {
             </aside>
           </div>
         </section>
+
+        <RealScoutListings campaign={`buildings/${b.slug}`} title="High-rise condos for sale on and near the Strip" />
 
         <section className="border-t border-gray-800 py-8 px-4">
           <div className="max-w-5xl mx-auto flex items-center justify-between">

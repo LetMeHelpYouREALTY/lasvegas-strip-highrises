@@ -4,6 +4,7 @@ import { buildings } from '@/lib/buildings'
 import { faqPageJsonLd, stripHighRiseFaqs } from '@/lib/seo/faq'
 import { JsonLd } from '@/lib/seo/json-ld'
 import { CalendlyButton } from '@/components/Calendly'
+import { RealScoutListings } from '@/components/RealScoutListings'
 import { calendlyUrl } from '@/lib/calendly'
 
 export const metadata: Metadata = {
@@ -88,6 +89,8 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        <RealScoutListings campaign="home" />
 
         {/* Buildings Grid */}
         <section className="py-16 px-4 bg-gray-950">
