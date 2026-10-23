@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { getKcmPosts, getKcmPost } from '@/lib/kcm'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { CalendlyButton } from '@/components/Calendly'
+import { calendlyUrl } from '@/lib/calendly'
 
 export const revalidate = 3600
 interface Props { params: Promise<{ slug: string }> }
@@ -55,9 +57,14 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="mt-10 bg-black border border-yellow-900/40 rounded-xl p-6 text-center">
           <p className="font-bold text-white text-lg mb-2">Questions about what this means for Strip condos?</p>
           <p className="text-gray-400 text-sm mb-4">Market shifts hit high-rise inventory differently. Call me for the building-level view.</p>
-          <a href="tel:7022996607" className="inline-block bg-yellow-500 text-gray-950 font-bold px-6 py-3 rounded-lg hover:bg-yellow-400 transition">
-            Call Dr. Jan · 702-299-6607
-          </a>
+          <div className="flex flex-wrap justify-center gap-3">
+            <CalendlyButton url={calendlyUrl('tour', 'post-cta', `blog/${slug}`)} className="inline-block bg-yellow-500 text-gray-950 font-bold px-6 py-3 rounded-lg hover:bg-yellow-400 transition">
+              Book a Building Walkthrough
+            </CalendlyButton>
+            <a href="tel:7022996607" className="inline-block border border-yellow-500 text-yellow-400 font-semibold px-6 py-3 rounded-lg hover:bg-gray-900 transition">
+              Call Dr. Jan · 702-299-6607
+            </a>
+          </div>
         </div>
       </div>
     </main>

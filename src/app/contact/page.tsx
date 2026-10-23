@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { CalendlyInline } from '@/components/Calendly'
+import { calendlyUrl } from '@/lib/calendly'
 
 export const metadata: Metadata = {
   title: 'Contact Dr. Jan Duffy | Las Vegas Strip High-Rise Expert',
@@ -26,8 +28,16 @@ export default function ContactPage() {
         </div>
       </section>
       <section className="py-14 px-4">
+        <div className="max-w-4xl mx-auto mb-12">
+          <h2 className="text-2xl font-bold text-white mb-2">Pick a showing time</h2>
+          <p className="text-gray-400 mb-6">Book directly on Dr. Jan&apos;s calendar. You&apos;ll get a confirmation right away.</p>
+          <CalendlyInline url={calendlyUrl('tour', 'inline', 'contact')} />
+        </div>
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
-          <ContactForm />
+          <div>
+            <h2 className="text-xl font-bold text-white mb-4">Prefer to send a message?</h2>
+            <ContactForm />
+          </div>
           <aside className="space-y-6">
             <div>
               <h3 className="font-bold text-yellow-400 mb-3">Direct Contact</h3>

@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { buildings } from '@/lib/buildings'
 import { faqPageJsonLd, stripHighRiseFaqs } from '@/lib/seo/faq'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { CalendlyButton } from '@/components/Calendly'
+import { calendlyUrl } from '@/lib/calendly'
 
 export const metadata: Metadata = {
   title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Buyer Guide',
@@ -60,6 +62,9 @@ export default function HomePage() {
               <Link href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
                 Browse Buildings
               </Link>
+              <CalendlyButton url={calendlyUrl('tour', 'hero', 'home')} className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition">
+                Schedule a Showing
+              </CalendlyButton>
               <a href="tel:7022996607" className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition">
                 Call 702-299-6607
               </a>
@@ -145,7 +150,10 @@ export default function HomePage() {
                   <span>{item}</span>
                 </div>
               ))}
-              <a href="tel:7022996607" className="block mt-5 bg-yellow-500 text-gray-950 font-bold text-center py-3 rounded-lg hover:bg-yellow-400 transition">
+              <CalendlyButton url={calendlyUrl('tour', 'cta', 'home')} className="block mt-5 bg-yellow-500 text-gray-950 font-bold text-center py-3 rounded-lg hover:bg-yellow-400 transition">
+                Schedule a Showing
+              </CalendlyButton>
+              <a href="tel:7022996607" className="block mt-3 border border-yellow-500 text-yellow-400 font-semibold text-center py-3 rounded-lg hover:bg-gray-900 transition">
                 Call 702-299-6607
               </a>
             </div>
