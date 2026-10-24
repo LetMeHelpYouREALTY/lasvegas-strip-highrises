@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 import { buildings, getBuilding } from '@/lib/buildings'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { CalendlyButton } from '@/components/Calendly'
+import { RealScoutListings } from '@/components/RealScoutListings'
+import { calendlyUrl } from '@/lib/calendly'
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -69,7 +72,10 @@ export default async function BuildingPage({ params }: Props) {
                   I track every listing and closed sale in this building. Let me pull current
                   availability and give you honest intel before you visit.
                 </p>
-                <a href="tel:7022996607" className="block w-full bg-yellow-500 text-gray-950 font-bold text-center py-3 rounded-lg hover:bg-yellow-400 transition mb-3">
+                <CalendlyButton url={calendlyUrl('tour', 'sidebar', `buildings/${b.slug}`)} className="block w-full bg-yellow-500 text-gray-950 font-bold text-center py-3 rounded-lg hover:bg-yellow-400 transition mb-3">
+                  Schedule a Showing
+                </CalendlyButton>
+                <a href="tel:7022996607" className="block w-full border border-yellow-500 text-yellow-400 font-semibold text-center py-3 rounded-lg hover:bg-gray-900 transition mb-3">
                   Call 702-299-6607
                 </a>
                 <a href="/contact" className="block w-full border border-yellow-500 text-yellow-400 font-semibold text-center py-3 rounded-lg hover:bg-gray-900 transition">
@@ -82,6 +88,8 @@ export default async function BuildingPage({ params }: Props) {
             </aside>
           </div>
         </section>
+
+        <RealScoutListings campaign={`buildings/${b.slug}`} title="High-rise condos for sale on and near the Strip" />
 
         <section className="border-t border-gray-800 py-8 px-4">
           <div className="max-w-5xl mx-auto flex items-center justify-between">

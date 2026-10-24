@@ -34,7 +34,6 @@ export default function Footer() {
           <h4 className="font-semibold mb-3 text-gray-400 text-sm uppercase tracking-wide">Contact</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li><a href="tel:7022996607" className="hover:text-yellow-400 transition">📞 702-299-6607</a></li>
-            <li><a href="sms:7022221964" className="hover:text-yellow-400 transition">💬 Text 702-222-1964</a></li>
             <li><a href="mailto:janet.duffy@bhhsnv.com" className="hover:text-yellow-400 transition">✉️ janet.duffy@bhhsnv.com</a></li>
           </ul>
           <div className="mt-4 text-xs text-gray-500">

@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { CalendlyScript } from '@/components/Calendly'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex-1">{children}</div>
         <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <Footer />
+        <CalendlyScript />
       </body>
     </html>
   )
