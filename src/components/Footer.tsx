@@ -10,8 +10,7 @@ export default function Footer() {
             Expert guidance on Las Vegas Strip high-rise condos — luxury residences above the world&apos;s most iconic skyline.
           </p>
           <p className="text-gray-500 text-xs">
-            Dr. Jan Duffy | NV License #S.0197614.LLC<br />
-            Berkshire Hathaway HomeServices Nevada Properties
+            Dr. Jan Duffy, REALTOR®
           </p>
         </div>
         <div>
@@ -46,7 +45,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-gray-900 py-4 px-4 text-center text-xs text-gray-600">
-        © {new Date().getFullYear()} Las Vegas Strip Highrises · Dr. Jan Duffy · BHHS Nevada Properties ·{' '}
+        © {new Date().getFullYear()} Las Vegas Strip Highrises · Dr. Jan Duffy · Berkshire Hathaway HomeServices Nevada Properties since September 2008 · License S.0197614.LLC ·{' '}
         <Link href="/privacy-policy" className="hover:text-gray-400">Privacy Policy</Link>
       </div>
     </footer>

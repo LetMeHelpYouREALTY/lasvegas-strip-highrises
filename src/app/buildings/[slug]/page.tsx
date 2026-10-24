@@ -76,7 +76,7 @@ export default async function BuildingPage({ params }: Props) {
                   Request Building Report
                 </a>
                 <p className="text-gray-600 text-xs text-center mt-4">
-                  Dr. Jan Duffy · NV #S.0197614.LLC<br />BHHS Nevada Properties
+                  Dr. Jan Duffy, REALTOR®<br />In real estate since 1983
                 </p>
               </div>
             </aside>

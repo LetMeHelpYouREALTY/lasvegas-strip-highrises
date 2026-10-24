@@ -27,7 +27,7 @@ export default function OpenGraphImage() {
           High-Rise Condos
         </div>
         <div style={{ fontSize: 32, color: '#d4d4d8', marginTop: 24, maxWidth: 900 }}>
-          Expert buyer guidance on Strip towers — Dr. Jan Duffy, BHHS Nevada Properties
+          Expert buyer guidance on Strip towers — Dr. Jan Duffy, REALTOR®
         </div>
         <div style={{ fontSize: 26, color: '#facc15', marginTop: 40 }}>702-299-6607 · lasvegasstriphighrises.com</div>
       </div>

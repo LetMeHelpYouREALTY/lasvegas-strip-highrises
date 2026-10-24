@@ -6,7 +6,7 @@ import { JsonLd } from '@/lib/seo/json-ld'
 
 export const metadata: Metadata = {
   title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Buyer Guide',
-  description: 'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, CityCenter, Waldorf Astoria & more. Dr. Jan Duffy, BHHS Nevada · 702-299-6607.',
+  description: 'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, CityCenter, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   alternates: { canonical: 'https://lasvegasstriphighrises.com' },
 }
 
@@ -119,7 +119,7 @@ export default function HomePage() {
               <p className="text-gray-400 mb-4">
                 Strip high-rise transactions involve hotel rental programs, HOA transfer fees,
                 special assessment history, view corridor protections, and rental restriction nuances
-                that most agents never encounter. I&apos;ve worked these buildings for 35+ years.
+                that most agents never encounter. I&apos;ve been in real estate since 1983.
               </p>
               <p className="text-gray-400 mb-6">
                 Whether you&apos;re buying a pied-à-terre, a full-time luxury residence, or a
