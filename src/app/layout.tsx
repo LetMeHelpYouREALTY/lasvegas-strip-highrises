@@ -11,19 +11,20 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 export const metadata: Metadata = {
   metadataBase: new URL('https://lasvegasstriphighrises.com'),
   title: {
-    default: 'Las Vegas Strip High-Rise Condos For Sale | Expert Guide',
+    default: 'Las Vegas Strip High-Rise Condos for Sale | Guide',
     template: '%s | Las Vegas Strip Highrises',
   },
-  description: 'Las Vegas Strip high-rise condos for sale — Turnberry Place, Palms Place, Panorama Towers, One Las Vegas, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+  description:
+    'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   keywords: ['Las Vegas Strip high-rise condos', 'Turnberry Place condos', 'Palms Place Las Vegas', 'Panorama Towers', 'One Las Vegas', 'Strip condos for sale'],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://lasvegasstriphighrises.com',
     siteName: 'Las Vegas Strip Highrises',
-    title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Guide',
+    title: 'Las Vegas Strip High-Rise Condos for Sale | Guide',
     description:
-      'Las Vegas Strip high-rise condos for sale — Turnberry Place, Palms Place, Panorama Towers, One Las Vegas, Waldorf Astoria & more. Dr. Jan Duffy · 702-299-6607.',
+      'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy · 702-299-6607.',
     images: [
       {
         url: '/opengraph-image',

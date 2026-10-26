@@ -8,8 +8,9 @@ import { RealScoutListings } from '@/components/RealScoutListings'
 import { calendlyUrl } from '@/lib/calendly'
 
 export const metadata: Metadata = {
-  title: 'Las Vegas Strip High-Rise Condos For Sale | Expert Buyer Guide',
-  description: 'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, CityCenter, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+  title: 'Las Vegas Strip High-Rise Condos for Sale | Guide',
+  description:
+    'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   alternates: { canonical: 'https://lasvegasstriphighrises.com' },
 }
 
@@ -62,6 +63,12 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
                 Browse Buildings
+              </Link>
+              <Link
+                href="/sell-your-las-vegas-strip-high-rise-condo"
+                className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition"
+              >
+                What&apos;s my condo worth?
               </Link>
               <CalendlyButton url={calendlyUrl('tour', 'hero', 'home')} className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition">
                 Schedule a Showing

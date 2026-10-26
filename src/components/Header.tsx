@@ -40,6 +40,9 @@ export default function Header() {
               </div>
             )}
           </div>
+          <Link href="/sell-your-las-vegas-strip-high-rise-condo" className="text-gray-300 hover:text-yellow-400 transition">
+            Sell
+          </Link>
           <Link href="/about" className="text-gray-300 hover:text-yellow-400 transition">About</Link>
           <Link href="/blog" className="text-gray-300 hover:text-yellow-400 transition">Market News</Link>
           <Link href="/contact" className="text-gray-300 hover:text-yellow-400 transition">Contact</Link>
@@ -62,6 +65,9 @@ export default function Header() {
             <Link key={b.href} href={b.href} className="block text-gray-300 hover:text-yellow-400 pl-2" onClick={() => setMobileOpen(false)}>{b.name}</Link>
           ))}
           <hr className="border-gray-700" />
+          <Link href="/sell-your-las-vegas-strip-high-rise-condo" className="block text-gray-300 hover:text-yellow-400" onClick={() => setMobileOpen(false)}>
+            Sell Your Condo
+          </Link>
           <Link href="/about" className="block text-gray-300 hover:text-yellow-400" onClick={() => setMobileOpen(false)}>About</Link>
           <Link href="/blog" className="block text-gray-300 hover:text-yellow-400" onClick={() => setMobileOpen(false)}>Market News</Link>
           <Link href="/contact" className="block text-gray-300 hover:text-yellow-400" onClick={() => setMobileOpen(false)}>Contact</Link>
