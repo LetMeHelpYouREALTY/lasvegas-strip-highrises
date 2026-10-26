@@ -10,7 +10,7 @@ import { calendlyUrl } from '@/lib/calendly'
 export const metadata: Metadata = {
   title: 'Las Vegas Strip High-Rise Condos for Sale | Guide',
   description:
-    'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+    'Las Vegas Strip high-rise condo expert — Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   alternates: { canonical: 'https://lasvegasstriphighrises.com' },
 }
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     absolute: 'Sell Your Las Vegas Strip High-Rise Condo with Dr. Jan Duffy',
   },
   description:
-    'Listing strategy for Strip high-rise condos — pricing, prep, marketing, and negotiation. Schedule a listing consultation with Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+    'Listing strategy for Strip high-rise condos — pricing, prep, marketing, and negotiation. Schedule a listing consultation with Dr. Jan Duffy · 702-299-6607.',
   alternates: { canonical: `${SITE}${SELL_PATH}` },
 }
 
@@ -38,8 +38,8 @@ const sellerAgentJsonLd = {
     '@type': 'Place',
     name: 'Las Vegas Strip high-rise corridor',
     containedInPlace: {
-      '@type': 'City',
-      name: 'Las Vegas',
+      '@type': 'AdministrativeArea',
+      name: 'Clark County',
       containedInPlace: {
         '@type': 'State',
         name: 'Nevada',
@@ -112,8 +112,7 @@ export default function SellStripHighRisePage() {
                 <h2 className="text-2xl font-bold text-white mb-3">Marketing beyond a yard sign</h2>
                 <p className="leading-relaxed">
                   Listings go to the MLS with professional media, targeted outreach to relocation and second-home buyers, and
-                  messaging that explains what makes your tower distinct. Dr. Jan Duffy has marketed Las Vegas high-rise
-                  residences since the corridor started building vertically.
+                  messaging that explains what makes your tower distinct.
                 </p>
               </div>
               <div>

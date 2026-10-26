@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | Las Vegas Strip Highrises',
   },
   description:
-    'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+    'Las Vegas Strip high-rise condo expert — Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   keywords: ['Las Vegas Strip high-rise condos', 'Turnberry Place condos', 'Palms Place Las Vegas', 'Panorama Towers', 'One Las Vegas', 'Strip condos for sale'],
   openGraph: {
     type: 'website',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'Las Vegas Strip Highrises',
     title: 'Las Vegas Strip High-Rise Condos for Sale | Guide',
     description:
-      'Las Vegas Strip high-rise condo expert — Turnberry Place, Palms Place, Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy · 702-299-6607.',
+      'Las Vegas Strip high-rise condo expert — Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy · 702-299-6607.',
     images: [
       {
         url: '/opengraph-image',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Las Vegas Strip High-Rise Condos For Sale',
     description:
-      'Expert guidance on Strip high-rise condos — Turnberry Place, Palms Place, Panorama Towers & more. Dr. Jan Duffy · 702-299-6607.',
+      'Expert guidance on Strip high-rise condos — Panorama Towers & more. Dr. Jan Duffy · 702-299-6607.',
     images: ['/opengraph-image'],
   },
 }
