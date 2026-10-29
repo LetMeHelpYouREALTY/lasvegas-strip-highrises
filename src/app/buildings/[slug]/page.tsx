@@ -82,7 +82,7 @@ export default async function BuildingPage({ params }: Props) {
                   Request Building Report
                 </a>
                 <p className="text-gray-600 text-xs text-center mt-4">
-                  Dr. Jan Duffy, REALTOR®<br />In real estate since 1983
+                  Dr. Jan Duffy, REALTOR®<br />Licensed since 2008 · 35 years in Las Vegas
                 </p>
               </div>
             </aside>

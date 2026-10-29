@@ -134,7 +134,7 @@ export default function HomePage() {
               <p className="text-gray-400 mb-4">
                 Strip high-rise transactions involve hotel rental programs, HOA transfer fees,
                 special assessment history, view corridor protections, and rental restriction nuances
-                that most agents never encounter. I&apos;ve been in real estate since 1983.
+                that most agents never encounter. I&apos;ve been licensed since 2008 · 35 years in Las Vegas.
               </p>
               <p className="text-gray-400 mb-6">
                 Whether you&apos;re buying a pied-à-terre, a full-time luxury residence, or a
