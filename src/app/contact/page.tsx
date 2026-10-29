@@ -43,7 +43,6 @@ export default function ContactPage() {
               <h3 className="font-bold text-yellow-400 mb-3">Direct Contact</h3>
               <ul className="space-y-2 text-sm">
                 <li><a href="tel:7022996607" className="text-yellow-400 hover:underline font-semibold">📞 702-299-6607</a></li>
-                <li><a href="sms:7022221964" className="text-gray-400 hover:text-yellow-400">💬 Text 702-222-1964</a></li>
                 <li><a href="mailto:janet.duffy@bhhsnv.com" className="text-gray-400 hover:text-yellow-400">✉️ janet.duffy@bhhsnv.com</a></li>
               </ul>
             </div>
