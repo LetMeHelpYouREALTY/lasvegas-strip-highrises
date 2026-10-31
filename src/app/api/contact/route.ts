@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { submitToFollowUpBoss } from '@/lib/contact/fub'
 import { saveContactLead, type ContactLeadInput } from '@/lib/contact/lead'
+import {
+  checkSpam,
+  HONEYPOT_FIELD,
+  STARTED_AT_FIELD,
+  verifyTurnstile,
+} from '@/lib/contact/spam'
 
 export const dynamic = 'force-dynamic'
 
@@ -32,6 +38,24 @@ export async function POST(req: NextRequest) {
 
   if (!name || (!email && !phone)) {
     return validationError('Name and email or phone are required')
+  }
+
+  const spamReason =
+    checkSpam({
+      honeypot: body[HONEYPOT_FIELD],
+      startedAt: body[STARTED_AT_FIELD],
+      name,
+    }) ??
+    ((await verifyTurnstile(body.turnstileToken, {
+      remoteIp: req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null,
+    }))
+      ? null
+      : 'turnstile_failed')
+
+  if (spamReason) {
+    // Answer like a success so bots get no signal; nothing reaches Follow Up Boss.
+    console.warn('[contact] dropped bot submission:', spamReason)
+    return NextResponse.json({ success: true })
   }
 
   const interest =
