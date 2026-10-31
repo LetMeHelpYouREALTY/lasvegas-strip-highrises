@@ -1,21 +1,35 @@
 'use client'
-import { useState } from 'react'
+import Script from 'next/script'
+import { useEffect, useRef, useState } from 'react'
+
+import { HONEYPOT_FIELD, STARTED_AT_FIELD } from '@/lib/contact/spam'
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
 export default function ContactForm() {
   const [state, setState] = useState<FormState>('idle')
+  const startedAt = useRef(0)
+
+  useEffect(() => {
+    startedAt.current = Date.now()
+  }, [])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setState('loading')
-    const data = Object.fromEntries(new FormData(e.currentTarget))
+    const { 'cf-turnstile-response': turnstileToken, ...data } = Object.fromEntries(
+      new FormData(e.currentTarget)
+    )
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
+          [STARTED_AT_FIELD]: startedAt.current,
+          turnstileToken,
           source: 'lasvegasstriphighrises.com',
           sourceUrl: window.location.href,
         }),
@@ -35,6 +49,13 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Honeypot: hidden from people, filled in by bots. */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+        <label>
+          Company website
+          <input name={HONEYPOT_FIELD} type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
       {[
         { name: 'name', label: 'Name', type: 'text', required: true },
         { name: 'email', label: 'Email', type: 'email', required: true },
@@ -60,6 +81,12 @@ export default function ContactForm() {
         <textarea name="message" rows={3}
           className="w-full border border-gray-700 bg-gray-900 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-yellow-500" />
       </div>
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" />
+        </>
+      )}
       {state === 'error' && (
         <p className="text-red-400 text-sm">
           Sorry, something went wrong sending your message. Please call or text Dr. Jan Duffy at{' '}
