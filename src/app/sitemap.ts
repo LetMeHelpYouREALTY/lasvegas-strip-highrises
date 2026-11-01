@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog',
     '/buildings',
     '/sell-your-las-vegas-strip-high-rise-condo',
-    '/privacy-policy',
+    // /privacy-policy is intentionally noindex, so it stays out of the sitemap.
   ].map((p) => ({
     url: `${BASE}${p}`,
     lastModified: lastmod,
