@@ -5,6 +5,8 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { CalendlyScript } from '@/components/Calendly'
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -52,6 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <Footer />
         <CalendlyScript />
+        <VercelAnalytics />
+        <VercelSpeedInsights />
       </body>
     </html>
   )
