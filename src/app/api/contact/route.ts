@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
   }
 
   const supabaseResult = await saveContactLead(lead)
-  if (!supabaseResult.ok) {
+  if (!supabaseResult.ok && supabaseResult.reason !== 'missing_config') {
     console.error(
       '[contact] Supabase secondary store failed after FUB success:',
       supabaseResult.reason,

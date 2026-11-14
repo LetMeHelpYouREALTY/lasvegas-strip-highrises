@@ -26,7 +26,24 @@ function createSupabaseAdminClient(): SupabaseClient | null {
   })
 }
 
-/** Server-side fallback when DB persistence is unavailable — do not lose the lead silently. */
+function maskEmail(email: string | null | undefined): string | null {
+  if (!email) return null
+  const [user, domain] = email.split('@')
+  if (!domain) return '***'
+  return `${user.slice(0, 1)}***@${domain}`
+}
+
+function maskPhone(phone: string | null | undefined): string | null {
+  if (!phone) return null
+  const digits = phone.replace(/\D/g, '')
+  return digits.length >= 4 ? `***${digits.slice(-4)}` : '***'
+}
+
+/**
+ * Note a backup-store problem without writing the lead's name, email, phone
+ * or message into the logs. This only runs after Follow Up Boss accepted the
+ * lead, so the full record is already safe there.
+ */
 export function logLeadForManualRecovery(
   reason: string,
   lead: ContactLeadInput
@@ -37,11 +54,9 @@ export function logLeadForManualRecovery(
       reason,
       receivedAt: new Date().toISOString(),
       lead: {
-        name: lead.name,
-        email: lead.email,
-        phone: lead.phone ?? null,
+        email: maskEmail(lead.email),
+        phone: maskPhone(lead.phone),
         interest: lead.interest ?? null,
-        message: lead.message ?? null,
         source: lead.source ?? null,
       },
     })
@@ -54,11 +69,10 @@ export async function saveContactLead(
   const supabase = createSupabaseAdminClient()
   if (!supabase) {
     const missing = missingSupabaseConfigFields()
-    console.error(
-      '[contact] Supabase config missing at runtime; expected env:',
+    console.warn(
+      '[contact] Supabase backup not set up (lead is in Follow Up Boss); missing env:',
       missing.join(', ')
     )
-    logLeadForManualRecovery('missing_supabase_config', lead)
     return { ok: false, reason: 'missing_config' }
   }
 
@@ -73,7 +87,7 @@ export async function saveContactLead(
   })
 
   if (error) {
-    console.error('[contact] Supabase insert failed:', error.message, error)
+    console.error('[contact] Supabase insert failed:', error.message)
     logLeadForManualRecovery(`supabase_insert_failed: ${error.message}`, lead)
     return { ok: false, reason: 'insert_failed', detail: error.message }
   }
