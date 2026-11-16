@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 const agentJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'RealEstateAgent',
+  '@id': 'https://lasvegasstriphighrises.com/#agent',
   name: 'Dr. Jan Duffy',
   url: 'https://lasvegasstriphighrises.com',
   telephone: '702-299-6607',
@@ -29,7 +30,18 @@ const agentJsonLd = {
     postalCode: '89117',
     addressCountry: 'US',
   },
-  areaServed: 'Las Vegas Strip, NV',
+  areaServed: {
+    '@type': 'Place',
+    name: 'Las Vegas Strip high-rise corridor',
+    containedInPlace: {
+      '@type': 'AdministrativeArea',
+      name: 'Clark County',
+      containedInPlace: {
+        '@type': 'State',
+        name: 'Nevada',
+      },
+    },
+  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -63,6 +75,12 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link href="/buildings" className="bg-yellow-500 text-gray-950 font-bold px-7 py-3 rounded-lg hover:bg-yellow-400 transition">
                 Browse Buildings
+              </Link>
+              <Link
+                href="/buying-a-las-vegas-strip-high-rise-condo"
+                className="border-2 border-yellow-500 text-yellow-400 font-semibold px-7 py-3 rounded-lg hover:bg-yellow-950 transition"
+              >
+                Buyer guide
               </Link>
               <Link
                 href="/sell-your-las-vegas-strip-high-rise-condo"

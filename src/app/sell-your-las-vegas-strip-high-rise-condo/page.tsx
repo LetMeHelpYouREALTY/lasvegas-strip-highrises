@@ -150,8 +150,13 @@ export default function SellStripHighRisePage() {
               </div>
               <p className="text-sm text-gray-500">
                 Buying instead?{' '}
+                <Link href="/buying-a-las-vegas-strip-high-rise-condo" className="text-yellow-400 hover:underline">
+                  Read the Strip high-rise buyer guide
+                </Link>
+                {' '}
+                or{' '}
                 <Link href="/" className="text-yellow-400 hover:underline">
-                  Browse Strip high-rise condos for sale
+                  browse buildings
                 </Link>
                 .
               </p>
