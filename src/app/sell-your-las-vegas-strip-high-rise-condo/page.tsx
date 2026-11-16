@@ -156,7 +156,7 @@ export default function SellStripHighRisePage() {
                 {' '}
                 or{' '}
                 <Link href="/" className="text-yellow-400 hover:underline">
-                  browse buildings
+                  browse Strip high-rise condos for sale
                 </Link>
                 .
               </p>

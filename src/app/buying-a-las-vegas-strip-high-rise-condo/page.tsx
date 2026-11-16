@@ -51,12 +51,12 @@ const guideFaqs = [
   {
     question: 'How long do I have to cancel after receiving the HOA resale package in Nevada?',
     answer:
-      'For condominiums governed by NRS chapter 116, Nevada law generally gives buyers five calendar days after receipt of the required resale package to cancel the purchase contract without penalty (NRS 116.4109). For condominium hotels under NRS chapter 116B, the same five-calendar-day right applies, but cancellation must be delivered by hand delivery or U.S. mail as described in NRS 116B.760. Always confirm the exact delivery rules and documents with your agent and attorney before you waive the period.',
+      'For condominiums governed by NRS chapter 116, Nevada law generally gives buyers five calendar days after receipt of the required resale package to cancel the purchase contract without penalty (NRS 116.4109). For condominium hotels under NRS chapter 116B, the same five-calendar-day right applies, but cancellation must be delivered by hand delivery or U.S. mail as described in NRS 116B.760. Always confirm the exact delivery rules and documents with your agent and attorney before the five-day period ends.',
   },
   {
     question: 'How does a residential Strip tower differ from a condo-hotel unit?',
     answer:
-      'Residential high-rise condos are intended for owner occupancy, with rental limits set in the HOA declaration and house rules. Condo-hotel units are often tied to a hotel operator and may allow participation in a rental pool when programs are active. Financing, insurance, and day-to-day use can differ between the two. Review the declaration, resale disclosures, and any hotel or rental agreements for the specific unit before you rely on a rental strategy.',
+      'Residential high-rise condos are intended for owner occupancy, with rental limits set in the HOA declaration and house rules. Condo-hotel units are often tied to a hotel operator and may allow participation in a rental pool when programs are active. Insurance and day-to-day use can differ between the two. Review the declaration, resale disclosures, and any hotel or rental agreements for the specific unit before you rely on a rental strategy.',
   },
 ] as const
 
@@ -133,7 +133,7 @@ export default function BuyingStripHighRiseGuidePage() {
               Nevada generally gives buyers five calendar days after receipt of the required resale package to cancel
               without penalty (NRS 116.4109). Condominium hotels follow NRS 116B.760, which includes the same
               five-calendar-day window with specific hand-delivery or U.S. mail requirements for cancellation. Confirm
-              timing and delivery methods in writing with your agent and closing attorney.
+              timing and delivery methods in writing with your agent and escrow officer.
             </p>
           </div>
 
