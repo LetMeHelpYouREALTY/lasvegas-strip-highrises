@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Inter } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -62,6 +63,7 @@ window.widgetTracker("send", "pageview");}
         `}</Script>
         <Footer />
         <CalendlyScript />
+        <SpeedInsights />
       </body>
     </html>
   )
