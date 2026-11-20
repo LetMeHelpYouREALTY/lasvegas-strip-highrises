@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CalendlyButton, CalendlyInline } from '@/components/Calendly'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { RealScoutListings } from '@/components/RealScoutListings'
 import { calendlyUrl } from '@/lib/calendly'
 
 const SELL_PATH = '/sell-your-las-vegas-strip-high-rise-condo'
@@ -88,6 +89,7 @@ export default function SellStripHighRisePage() {
             </div>
           </div>
         </section>
+        <RealScoutListings campaign="sell-strip-highrise" />
 
         <section className="py-14 px-4 max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-10">
@@ -141,7 +143,7 @@ export default function SellStripHighRisePage() {
               </div>
               <div className="border border-gray-800 rounded-xl p-6 bg-gray-900/50 text-sm text-gray-400">
                 <p className="mb-2">
-                  Dr. Jan Duffy, REALTOR® · Berkshire Hathaway HomeServices Nevada Properties · License S.0197614.LLC
+                  Dr. Jan Duffy, REALTOR® · 702-299-6607
                 </p>
                 <p>
                   MLS listings are deemed reliable but not guaranteed. All measurements and square footage are approximate.

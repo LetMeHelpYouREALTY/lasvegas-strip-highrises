@@ -1,121 +1,175 @@
+/**
+ * Strip-corridor towers. Site standard v1: every figure below was retrieved 2026-11-20 from the
+ * source on the same entry. Sales figures are MLS closings for the 12 months ending
+ * September 30, 2026 unless the entry says otherwise. Re-check before reuse.
+ */
 export interface Building {
   slug: string
   name: string
   tagline: string
+  /** Short market line, always with its sample size. */
   priceRange: string
   description: string
   features: string[]
   location: string
+  address: string
   units: string
   yearBuilt: string
   stories: string
-  zip: string
+  kind: 'Residential' | 'Condo-hotel' | 'Residences above a hotel'
+  source: string
+  sourceUrl: string
+  asOf: string
 }
+
+const NREG_LUXURY = 'https://www.nevadarealestategroup.com/blog/luxury-condos-las-vegas-2026-buyers-guide'
+const NREG_HOTELS = 'https://www.nevadarealestategroup.com/las-vegas-condo-hotels'
+const TOMES = 'https://tomesrealty.com/buildings'
 
 export const buildings: Building[] = [
   {
     slug: 'turnberry-place',
     name: 'Turnberry Place',
-    tagline: 'Premier luxury high-rise on the north Strip',
-    priceRange: '$500K – $3M+',
-    description: `Turnberry Place is Las Vegas' most established luxury high-rise address, comprising four 38-story towers on Paradise Road just east of the north Strip. With residences ranging from 1,200 to over 5,000 square feet, Turnberry Place offers resort-level amenities including concierge, valet, pool complex, fitness center, and spa. The towers attract a mix of full-time residents and second-home buyers seeking a maintenance-free Strip-adjacent lifestyle. Floor plans include one- to four-bedroom units and penthouse configurations with panoramic Strip and mountain views.`,
-    features: ['4 towers, 38 stories each', 'Concierge & valet', 'Resort pool complex', 'Fitness center & spa', 'In-unit washer/dryer', 'Gated & secured', 'Strip & mountain views'],
-    location: 'Paradise Rd, north Strip corridor',
-    units: '1,580 total across 4 towers',
-    yearBuilt: '1999–2009',
+    tagline: 'Four towers on Paradise Road, east of the Strip',
+    priceRange: '$744,800 median · 48 closings',
+    description:
+      'Turnberry Place is four 38-story residential towers with about 720 homes on Paradise Road, east of the Strip near the Convention Center, built 2001 to 2006. Floor plans run large, so a $744,800 median works out to $377 a square foot. Median listing dues are $1,388 a month.',
+    features: ['Four 38-story towers', 'About 720 homes', '$377 median per sq ft', 'Median dues $1,388 a month', 'Residential, not a condo-hotel'],
+    location: 'Paradise Road, east of the Strip',
+    address: '2777, 2827, 2857 and 2877 Paradise Rd',
+    units: 'About 720',
+    yearBuilt: '2001 to 2006',
     stories: '38 per tower',
-    zip: '89169',
+    kind: 'Residential',
+    source: 'Nevada Real Estate Group luxury condo guide; Tomes Realty building list (address)',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
   {
     slug: 'palms-place',
     name: 'Palms Place',
-    tagline: 'Hotel-condo lifestyle minutes from the Strip',
-    priceRange: '$250K – $1.2M',
-    description: `Palms Place is a 47-story hotel-condo tower at the Palms Casino Resort, offering buyers a blend of personal use and optional rental income through the hotel rental program. Units range from studios to two-bedroom suites with high-end finishes, and amenities include a rooftop pool, fitness center, and full hotel services. The off-Strip location on Flamingo Rd provides easy freeway access without the traffic of Las Vegas Blvd, while the casino, dining, and entertainment of the Palms are steps away.`,
-    features: ['47 stories', 'Hotel rental program option', 'Rooftop pool & sky villas', 'Hotel concierge services', 'Studio to 2-bedroom', 'Off-Strip privacy', 'Investment income potential'],
-    location: 'Flamingo Rd, west of Strip',
+    tagline: 'Condo-hotel tower next to the Palms on Flamingo Road',
+    priceRange: '$207,000 median · 44 closings',
+    description:
+      'Palms Place is a 47-story condo-hotel with 599 units beside the Palms on West Flamingo Road, west of the Strip. It closed 44 units at a $207,000 median, and labeled dues ran a median $827 a month. Because the tower runs as a hotel, most buyers pay cash or use a portfolio lender.',
+    features: ['47 stories', '599 units', 'Condo-hotel', 'Median dues $827 a month', 'Opened 2008'],
+    location: 'West Flamingo Road, west of the Strip',
+    address: '4381 W Flamingo Rd',
     units: '599',
     yearBuilt: '2008',
     stories: '47',
-    zip: '89103',
+    kind: 'Condo-hotel',
+    source: 'Nevada Real Estate Group condo-hotels page; Tomes Realty building list (address, year)',
+    sourceUrl: NREG_HOTELS,
+    asOf: 'read November 20, 2026',
   },
   {
     slug: 'panorama-towers',
     name: 'Panorama Towers',
-    tagline: 'True residential high-rise with Strip views',
-    priceRange: '$350K – $1.8M',
-    description: `Panorama Towers is a pair of 42-story residential towers located directly west of the Strip on Harmon Ave, offering genuine full-time residential living with sweeping Strip, mountain, and valley views. Unlike hotel-condos, Panorama is designed purely for living — no transient rentals, no casino traffic — with a refined lobby, concierge, two pools, fitness center, and a peaceful environment that feels removed from the Strip while being two blocks from it. Units range from one-bedroom to large three-bedroom floor plans.`,
-    features: ['42-story pure residential', 'No transient hotel rentals', 'Two towers, two pools', 'Concierge & valet', 'Floor-to-ceiling windows', 'Direct Strip views', 'Dog-friendly'],
-    location: 'Harmon Ave, directly west of Strip',
-    units: '843 across 2 towers',
-    yearBuilt: '2006–2007',
-    stories: '42',
-    zip: '89103',
+    tagline: 'Two residential towers on Dean Martin Drive, west of I-15',
+    priceRange: '$552,500 median · 32 closings',
+    description:
+      'Panorama Towers is two residential towers with about 634 homes on Dean Martin Drive, across I-15 from CityCenter, built 2006 to 2007. It closed 32 condos at a $552,500 median and $397 a square foot. Median listing dues are $1,517 a month, among the highest of the mid-priced towers.',
+    features: ['Two towers', 'About 634 homes', '$397 median per sq ft', 'Median dues $1,517 a month', 'Residential, not a condo-hotel'],
+    location: 'Dean Martin Drive, west of I-15',
+    address: '4525 and 4575 Dean Martin Dr',
+    units: 'About 634',
+    yearBuilt: '2006 to 2007',
+    stories: 'Two towers',
+    kind: 'Residential',
+    source: 'Nevada Real Estate Group luxury condo guide; Tomes Realty building list (address)',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
   {
     slug: 'one-las-vegas',
     name: 'One Las Vegas',
-    tagline: 'South Strip twin towers with resort amenities',
-    priceRange: '$300K – $1.1M',
-    description: `One Las Vegas consists of two 20-story residential towers at the south end of the Strip near Mandalay Bay, offering full-time residential condos with a resort feel. Amenities include a resort-style pool, fitness center, and spa. Units are spacious by Strip standards, with floor-to-ceiling windows and Strip or mountain views. The south Strip location is quieter than the mid-Strip corridor, with easy access to the 15 freeway and the airport, making it popular with snowbirds and second-home buyers.`,
-    features: ['Twin 20-story towers', 'Resort pool & spa', 'Fitness center', 'Spacious floor plans', 'South Strip location', 'Airport proximity', 'Mountain & Strip views'],
-    location: 'Las Vegas Blvd South near Mandalay Bay',
-    units: '400+',
-    yearBuilt: '2007',
+    tagline: 'Two residential towers on South Las Vegas Boulevard',
+    priceRange: 'Too few closings for a 12-month median',
+    description:
+      'One Las Vegas is two 20-story residential towers with 359 condos at 8255 S Las Vegas Blvd, ZIP 89123, well south of the resort corridor and close to the 215 Beltway and the airport. The towers were finished in 2008. It is a residential building, not a condo-hotel.',
+    features: ['Two 20-story towers', '359 condos', 'Finished 2008', 'Residential, not a condo-hotel', 'Near the 215 Beltway'],
+    location: 'South Las Vegas Boulevard, ZIP 89123',
+    address: '8255 S Las Vegas Blvd',
+    units: '359',
+    yearBuilt: '2008',
     stories: '20 per tower',
-    zip: '89119',
+    kind: 'Residential',
+    source: 'VIP Homes and The Rivlin Group building pages; Tomes Realty (address, ZIP)',
+    sourceUrl: 'https://www.viphomes.vegas/one-las-vegas',
+    asOf: 'updated November 18, 2026',
   },
   {
     slug: 'waldorf-astoria-residences',
     name: 'Waldorf Astoria Residences',
-    tagline: 'Ultra-luxury branded residences at CityCenter',
-    priceRange: '$700K – $5M+',
-    description: `The Waldorf Astoria Residences (formerly Mandarin Oriental Las Vegas) at CityCenter offers the most prestigious branded residential address on the Las Vegas Strip. Units occupy the upper floors of the 47-story tower, with the hotel below providing five-star services including room service, housekeeping, and access to the rooftop pool and spa. This is the choice for buyers who demand the highest standard of finishes, service, and exclusivity — and are willing to pay a significant premium for the Waldorf Astoria name and CityCenter address.`,
-    features: ['47-story branded tower', 'Hotel-level services', 'Five-star concierge', 'CityCenter location', 'Upper-floor residences only', 'Rooftop pool & spa', 'Ultra-luxury finishes'],
-    location: 'CityCenter, mid-Strip (Las Vegas Blvd)',
-    units: '227 residences',
+    tagline: 'Private residences above a hotel at CityCenter',
+    priceRange: '$2,906,000 median · 16 closings',
+    description:
+      'The Waldorf Astoria Residences are 225 private homes on the upper floors of a 47-story CityCenter tower that opened in 2009. Sixteen closed at a $2,906,000 median and $1,421 a square foot, the highest per-foot figure on the Strip. Median listing dues are $3,261 a month.',
+    features: ['47-story tower', '225 residences', '$1,421 median per sq ft', 'Median dues $3,261 a month', 'Las Vegas Boulevard address'],
+    location: 'CityCenter, Las Vegas Boulevard',
+    address: 'CityCenter, Las Vegas Blvd S',
+    units: '225',
     yearBuilt: '2009',
-    stories: '47 (residences on upper floors)',
-    zip: '89158',
+    stories: '47',
+    kind: 'Residences above a hotel',
+    source: 'Nevada Real Estate Group luxury condo guide',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
   {
     slug: 'the-martin',
     name: 'The Martin',
-    tagline: 'Boutique luxury steps from T-Mobile Arena',
-    priceRange: '$350K – $1.5M',
-    description: `The Martin is a 22-story luxury residential tower in the heart of the Strip corridor, positioned steps from T-Mobile Arena, Park MGM, and Allegiant Stadium. Unlike the larger hotel-condo towers, The Martin is a true residential building with a quieter, boutique feel, a resort pool, fitness center, and concierge. Its location is ideal for buyers who want walkable Strip access without the mass-market hotel environment. Units range from studios to two-bedroom floor plans with clean contemporary finishes.`,
-    features: ['22-story boutique tower', 'Steps from T-Mobile Arena', 'Resort pool & fitness', 'Concierge', 'Walk to Allegiant Stadium', 'Contemporary finishes', 'True residential — no hotel'],
-    location: 'Harmon Ave, steps from T-Mobile Arena',
-    units: '344',
-    yearBuilt: '2014',
-    stories: '22',
-    zip: '89103',
+    tagline: 'Residential tower next to Panorama on Dean Martin Drive',
+    priceRange: '$520,000 median · 17 closings',
+    description:
+      'The Martin is a 45-story residential tower with about 372 homes on Dean Martin Drive, west of I-15, built in 2008. It closed 17 condos at a $520,000 median and $452 a square foot, and median listing dues are $934 a month, well below Panorama next door.',
+    features: ['45 stories', 'About 372 homes', '$452 median per sq ft', 'Median dues $934 a month', 'Residential, not a condo-hotel'],
+    location: 'Dean Martin Drive, west of I-15',
+    address: '4471 Dean Martin Dr',
+    units: 'About 372',
+    yearBuilt: '2008',
+    stories: '45',
+    kind: 'Residential',
+    source: 'Nevada Real Estate Group luxury condo guide; Tomes Realty building list (address)',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
   {
     slug: 'veer-towers',
     name: 'Veer Towers',
-    tagline: 'Iconic tilted towers at the heart of CityCenter',
-    priceRange: '$400K – $2M+',
-    description: `Veer Towers are CityCenter's distinctive twin residential skyscrapers, each tilted 5 degrees in opposite directions, making them among the most visually recognizable buildings in Las Vegas. Designed by Helmut Jahn, the towers offer 335 total residences with floor-to-ceiling glass, designer finishes, and direct access to CityCenter's dining, retail (Crystals), and hotel options. The location is as central as it gets on the Strip, and the architecture commands a premium. A strong choice for design-conscious luxury buyers.`,
-    features: ['Twin 37-story towers (tilted 5°)', 'Helmut Jahn architecture', 'Floor-to-ceiling glass', 'CityCenter access (Crystals)', 'Designer finishes', 'Concierge & valet', 'Trophy property'],
-    location: 'CityCenter (between Bellagio & Aria)',
-    units: '335 (168 + 167)',
+    tagline: 'Two leaning residential towers inside CityCenter',
+    priceRange: '$550,000 median · 45 closings',
+    description:
+      'Veer Towers is two 37-story residential towers with 670 homes inside CityCenter, completed in 2010. It closed 45 condos at a $550,000 median and $673 a square foot. Median listing dues are $1,080 a month. Veer is residential, not a condo-hotel, so confirm the lease rules before counting on rental income.',
+    features: ['Two 37-story towers', '670 homes', '$673 median per sq ft', 'Median dues $1,080 a month', 'Las Vegas Boulevard address'],
+    location: 'CityCenter, Las Vegas Boulevard',
+    address: '3722 and 3726 S Las Vegas Blvd',
+    units: '670',
     yearBuilt: '2010',
     stories: '37 per tower',
-    zip: '89158',
+    kind: 'Residential',
+    source: 'Nevada Real Estate Group luxury condo guide and Veer Towers guide; Tomes Realty (address)',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
   {
     slug: 'trump-international',
     name: 'Trump International',
-    tagline: 'Gold-glass icon on the north Strip',
-    priceRange: '$300K – $2M+',
-    description: `Trump International Hotel & Tower Las Vegas is a 64-story gold-glass tower on the north Strip, offering hotel-condo residences that can participate in the hotel rental program or be held exclusively for personal use. Amenities include a pool, spa, fitness center, and full hotel services. The tower's distinctive gold exterior is a north Strip landmark, and the upper floors command sweeping views of the Strip, mountains, and valley. Residences range from studios to three-bedroom suites with high-end finishes throughout.`,
-    features: ['64-story gold-glass tower', 'Hotel rental program available', 'Pool, spa & fitness', 'Full hotel services', 'North Strip landmark', 'Studio to 3-bedroom', 'Panoramic valley views'],
-    location: 'Fashion Show Dr, north Strip',
+    tagline: 'Condo-hotel tower on Fashion Show Drive',
+    priceRange: '$300,425 median · 30 closings',
+    description:
+      'Trump International is a 64-story condo-hotel with 1,282 units on Fashion Show Drive, opened in 2008, with no casino. It closed 30 units at a $300,425 median and $531 a square foot, and its $661 median dues are the lowest of the towers tracked. Plan on cash or a portfolio lender.',
+    features: ['64 stories', '1,282 units', 'Condo-hotel', 'Median dues $661 a month', 'No casino'],
+    location: 'Fashion Show Drive',
+    address: '2000 Fashion Show Dr',
     units: '1,282',
     yearBuilt: '2008',
     stories: '64',
-    zip: '89109',
+    kind: 'Condo-hotel',
+    source: 'Nevada Real Estate Group luxury condo guide and condo-hotels page; Tomes Realty (address)',
+    sourceUrl: NREG_LUXURY,
+    asOf: 'updated November 1, 2026',
   },
 ]
 

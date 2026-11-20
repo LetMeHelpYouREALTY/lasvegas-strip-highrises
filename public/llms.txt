@@ -1,12 +1,18 @@
-# Las Vegas Strip Highrises — lasvegasstriphighrises.com
-# Contact: Dr. Jan Duffy, REALTOR®
-702-299-6607
+# Las Vegas Strip Highrises (lasvegasstriphighrises.com)
+# Dr. Jan Duffy, REALTOR. Buyer and seller representation in Las Vegas Strip high-rise condos.
+# Phone: 702-299-6607 · Office: 7475 W Sahara Ave, Suite 100, Las Vegas, NV 89117 · Hours: Mon-Sun 8 AM-8 PM
 
-https://lasvegasstriphighrises.com/
-https://lasvegasstriphighrises.com/about
-https://lasvegasstriphighrises.com/buildings
-https://lasvegasstriphighrises.com/blog
-https://lasvegasstriphighrises.com/contact
-https://lasvegasstriphighrises.com/sell-your-las-vegas-strip-high-rise-condo
-https://lasvegasstriphighrises.com/buying-a-las-vegas-strip-high-rise-condo
-https://lasvegasstriphighrises.com/privacy-policy
+## Pages
+- https://lasvegasstriphighrises.com/ : Strip high-rise condos for sale, tower medians, Q&A
+- https://lasvegasstriphighrises.com/buildings : Eight towers compared
+- https://lasvegasstriphighrises.com/buying-a-las-vegas-strip-high-rise-condo : Buyer guide (Nevada HOA resale package rules)
+- https://lasvegasstriphighrises.com/sell-your-las-vegas-strip-high-rise-condo : Seller guide and valuation booking
+- https://lasvegasstriphighrises.com/about
+- https://lasvegasstriphighrises.com/contact
+- https://lasvegasstriphighrises.com/blog
+
+## Key facts (retrieved 2026-11-20; sources on the home page)
+- 19 Las Vegas tower plats: 475 closings at a $480,000 median, 12 months ending 2026-09-18 (Nevada Real Estate Group, MLS records).
+- Tower medians, 12 months to 2026-09-30: Waldorf Astoria $2,906,000; Turnberry Place $744,800; Panorama Towers $552,500; Veer Towers $550,000; The Martin $520,000; Trump International $300,425; Palms Place $207,000.
+- Only Waldorf Astoria, Veer and Sky Las Vegas have Las Vegas Boulevard addresses on the Strip.
+- Condo-hotels (Trump International, Palms Place) are generally ineligible for Fannie Mae financing.
