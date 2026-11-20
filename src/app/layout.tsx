@@ -5,6 +5,7 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { CalendlyScript } from '@/components/Calendly'
+import { Analytics } from '@vercel/analytics/next'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -62,6 +63,7 @@ window.widgetTracker("send", "pageview");}
         `}</Script>
         <Footer />
         <CalendlyScript />
+        <Analytics />
       </body>
     </html>
   )
