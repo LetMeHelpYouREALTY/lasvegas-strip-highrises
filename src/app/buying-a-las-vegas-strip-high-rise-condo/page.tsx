@@ -4,6 +4,7 @@ import { buildings } from '@/lib/buildings'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { faqPageJsonLd } from '@/lib/seo/faq'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { RealScoutListings } from '@/components/RealScoutListings'
 import { calendlyUrl } from '@/lib/calendly'
 
 const GUIDE_PATH = '/buying-a-las-vegas-strip-high-rise-condo'
@@ -109,6 +110,7 @@ export default function BuyingStripHighRiseGuidePage() {
             </div>
           </div>
         </section>
+        <RealScoutListings campaign="buyer-guide" />
 
         <section className="py-14 px-4 max-w-4xl mx-auto text-gray-300 space-y-10">
           <div>
@@ -200,7 +202,7 @@ export default function BuyingStripHighRiseGuidePage() {
         <section className="py-12 px-4 bg-black border-t border-yellow-900/30">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-gray-400 mb-4">
-              Dr. Jan Duffy, REALTOR® · Berkshire Hathaway HomeServices Nevada Properties · 702-299-6607
+              Dr. Jan Duffy, REALTOR® · 702-299-6607
             </p>
             <a
               href={buyerCalendly}

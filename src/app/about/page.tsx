@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { RealScoutListings } from '@/components/RealScoutListings'
+import { CalendlyButton } from '@/components/Calendly'
+import { calendlyUrl } from '@/lib/calendly'
 
 export const metadata: Metadata = {
-  title: 'About Dr. Jan Duffy | Las Vegas Strip High-Rise Specialist',
-  description: '35 years in Las Vegas, licensed since 2008. Strip high-rise condo expert. 500+ team sales, $127M+ Dr. Duffy Group career sales. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+  title: 'About Dr. Jan Duffy | Las Vegas Strip High-Rise Condos',
+  description:
+    'Dr. Jan Duffy helps buyers and sellers in Las Vegas Strip high-rise condos compare towers on price per foot, dues and rental rules. 702-299-6607.',
   alternates: { canonical: 'https://lasvegasstriphighrises.com/about' },
 }
 
@@ -17,45 +22,51 @@ export default function AboutPage() {
   return (
     <>
       <JsonLd data={breadcrumbs} />
-    <main className="bg-gray-950 min-h-screen">
-      <section className="py-16 px-4 bg-black">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-3">About Dr. Jan Duffy</h1>
-          <p className="text-yellow-400 text-xl">Las Vegas Strip High-Rise Specialist · Las Vegas REALTOR®</p>
-        </div>
-      </section>
-      <section className="py-14 px-4 max-w-4xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-10">
-          <div className="md:col-span-2 prose">
-            <h2>Licensed Since 2008</h2>
-            <p>Dr. Jan Duffy has watched Las Vegas evolve from a low-rise casino town into a vertical luxury market. She&apos;s been selling Strip high-rise condos since the first towers went up and understands these buildings at a level that general agents simply don&apos;t reach.</p>
-            <h2>What &quot;Specialist&quot; Actually Means</h2>
-            <p>Strip high-rise transactions have layers: hotel rental agreements, HOA reserve studies, view corridor assessments, and resale restrictions that vary building by building. Dr. Jan has navigated hundreds of these deals — she knows where the surprises hide and how to protect buyers from them.</p>
-            <h2>Marketing Reach and Strip Relationships</h2>
-            <p>With broad marketing reach and Strip relationships built over 35 years in Las Vegas, clients get a specialist who knows every building from lobby to penthouse.</p>
-          </div>
-          <aside>
-            <div className="border border-yellow-900/40 rounded-xl p-6 bg-black sticky top-24">
-              <h3 className="font-bold text-yellow-400 text-lg mb-4">By the Numbers</h3>
-              {[
-                { n: 'Since 2008', l: 'In Real Estate' },
-                { n: '500+', l: 'Transactions' },
-                { n: '$127M+', l: 'Career Sales' },
-                { n: '8', l: 'Strip Buildings' },
-              ].map((s) => (
-                <div key={s.n} className="border-b border-gray-800 pb-3 mb-3">
-                  <div className="text-3xl font-bold text-yellow-400">{s.n}</div>
-                  <div className="text-gray-400 text-sm">{s.l}</div>
-                </div>
-              ))}
-              <a href="tel:7022996607" className="block w-full bg-yellow-500 text-gray-950 font-bold text-center py-3 rounded-lg hover:bg-yellow-400 transition mt-4">
-                Call 702-299-6607
-              </a>
+      <main className="bg-gray-950 min-h-screen">
+        <section className="py-16 px-4 bg-black">
+          <div className="max-w-4xl mx-auto grid md:grid-cols-[160px_1fr] gap-8 items-center">
+            <Image src="/dr-jan-duffy-headshot.jpg" alt="Dr. Jan Duffy" width={160} height={160} className="rounded-full mx-auto" priority />
+            <div>
+              <h1 className="font-serif text-4xl text-white mb-3">About Dr. Jan Duffy, Las Vegas Strip high-rise condo agent</h1>
+              <p className="text-gray-300 text-lg">
+                Dr. Jan Duffy represents buyers and sellers in the towers on and beside the Las Vegas Strip, from
+                condo-hotels on Flamingo Road to the residences at CityCenter.
+              </p>
             </div>
-          </aside>
-        </div>
-      </section>
-    </main>
+          </div>
+        </section>
+
+        <RealScoutListings campaign="about" />
+
+        <section className="py-14 px-4 max-w-4xl mx-auto">
+          <div className="prose">
+            <h2>What she does for high-rise buyers</h2>
+            <p>
+              A tower purchase is part real estate, part association membership. Dr. Jan pulls the building&apos;s
+              recent closings, reads the association budget, reserve study and lease rules with you, and checks
+              whether a lender will finance the building before you write an offer.
+            </p>
+            <h2>What she does for high-rise sellers</h2>
+            <p>
+              Each tower is its own market. Dr. Jan prices a unit against recent closings in the same building, stack
+              and floor, and times the listing against the active competition in that tower.
+            </p>
+            <h2>How to reach her</h2>
+            <p>Call 702-299-6607, or book a time below. Office hours are Monday to Sunday, 8:00 AM to 8:00 PM.</p>
+          </div>
+          <div className="flex flex-wrap gap-4 mt-6">
+            <CalendlyButton url={calendlyUrl('buyer', 'about', 'about')} className="bg-yellow-500 text-gray-950 font-semibold px-6 py-3 rounded-full hover:bg-yellow-400 transition">
+              Book a buyer consultation
+            </CalendlyButton>
+            <CalendlyButton url={calendlyUrl('seller', 'about', 'about')} className="border border-yellow-500 text-yellow-400 font-semibold px-6 py-3 rounded-full hover:bg-gray-900 transition">
+              Book a listing consultation
+            </CalendlyButton>
+            <a href="tel:7022996607" className="border border-yellow-500 text-yellow-400 font-semibold px-6 py-3 rounded-full hover:bg-gray-900 transition">
+              Call 702-299-6607
+            </a>
+          </div>
+        </section>
+      </main>
     </>
   )
 }

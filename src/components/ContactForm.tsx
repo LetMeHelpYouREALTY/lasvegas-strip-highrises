@@ -28,7 +28,7 @@ export default function ContactForm() {
 
   if (state === 'success') return (
     <div className="bg-yellow-950 border border-yellow-700 rounded-xl p-6 text-center">
-      <p className="text-yellow-400 font-bold text-lg mb-2">Got it — I&apos;ll be in touch shortly.</p>
+      <p className="text-yellow-400 font-bold text-lg mb-2">Got it. Dr. Jan will be in touch shortly.</p>
       <p className="text-gray-300 text-sm">Or call direct: <a href="tel:7022996607" className="text-yellow-400 font-semibold">702-299-6607</a></p>
     </div>
   )

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import ContactForm from '@/components/ContactForm'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { RealScoutListings } from '@/components/RealScoutListings'
 import { CalendlyInline } from '@/components/Calendly'
 import { calendlyUrl } from '@/lib/calendly'
 
@@ -23,10 +24,11 @@ export default function ContactPage() {
     <main className="bg-gray-950 min-h-screen">
       <section className="py-12 px-4 bg-black">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Start Your High-Rise Search</h1>
-          <p className="text-gray-400">Tell me which buildings interest you — I&apos;ll pull current listings and give you the real story on each one.</p>
+          <h1 className="font-serif text-3xl md:text-4xl text-white mb-2">Contact Dr. Jan Duffy about Las Vegas Strip high-rise condos</h1>
+          <p className="text-gray-400">Name the towers you are considering. Dr. Jan pulls their current listings and recent closings and goes over each one with you.</p>
         </div>
       </section>
+        <RealScoutListings campaign="contact" />
       <section className="py-14 px-4">
         <div className="max-w-4xl mx-auto mb-12">
           <h2 className="text-2xl font-bold text-white mb-2">Pick a showing time</h2>
@@ -54,12 +56,12 @@ export default function ContactPage() {
               <p className="mt-2 text-sm text-gray-500">Hours: Monday–Sunday, 8:00 AM–8:00 PM</p>
             </div>
             <div className="border border-yellow-900/40 rounded-xl p-4 text-sm">
-              <p className="text-yellow-400 font-bold mb-2">Good Questions to Ask Me:</p>
+              <p className="text-yellow-400 font-bold mb-2">Questions worth bringing:</p>
               <ul className="space-y-1 text-gray-400">
                 <li>✦ Which buildings allow short-term rentals?</li>
                 <li>✦ What are the real HOA fees all-in?</li>
                 <li>✦ Which floors have unobstructed Strip views?</li>
-                <li>✦ Hotel rental program — what&apos;s the actual ROI?</li>
+                <li>✦ How does a hotel rental program split revenue?</li>
                 <li>✦ Which buildings have the best resale history?</li>
               </ul>
             </div>

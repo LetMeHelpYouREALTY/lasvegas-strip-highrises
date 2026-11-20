@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <h1 className="text-3xl font-bold text-white mb-2">Privacy Policy</h1>
       <p className="text-gray-500 text-sm mb-10">Last updated: May 12, 2026</p>
       <div className="prose">
-        <p>lasvegasstriphighrises.com is operated by Dr. Jan Duffy, NV License #S.0197614.LLC, Berkshire Hathaway HomeServices Nevada Properties.</p>
+        <p>lasvegasstriphighrises.com is operated by Dr. Jan Duffy. Her brokerage and Nevada license number are shown in the footer of every page.</p>
         <h2>Information We Collect</h2>
         <p>Contact form submissions collect name, email, phone, and message. Standard server logs collect IP and browser type via Vercel.</p>
         <h2>Use</h2>

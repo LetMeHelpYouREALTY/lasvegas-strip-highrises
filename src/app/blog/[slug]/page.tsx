@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {post.localContext && (
           <div className="border-l-4 border-yellow-500 bg-yellow-950/30 p-4 mb-8 rounded-r-lg">
-            <p className="text-xs font-bold text-yellow-400 uppercase mb-1">Dr. Jan&apos;s Strip Take</p>
+            <p className="text-xs font-bold text-yellow-400 uppercase mb-1">Local context</p>
             <p className="text-yellow-100 text-sm">{post.localContext}</p>
           </div>
         )}
@@ -56,7 +56,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="mt-10 bg-black border border-yellow-900/40 rounded-xl p-6 text-center">
           <p className="font-bold text-white text-lg mb-2">Questions about what this means for Strip condos?</p>
-          <p className="text-gray-400 text-sm mb-4">Market shifts hit high-rise inventory differently. Call me for the building-level view.</p>
+          <p className="text-gray-400 text-sm mb-4">Market shifts hit high-rise inventory differently. Dr. Jan can walk you through the building-level view.</p>
           <div className="flex flex-wrap justify-center gap-3">
             <CalendlyButton url={calendlyUrl('tour', 'post-cta', `blog/${slug}`)} className="inline-block bg-yellow-500 text-gray-950 font-bold px-6 py-3 rounded-lg hover:bg-yellow-400 transition">
               Book a Building Walkthrough

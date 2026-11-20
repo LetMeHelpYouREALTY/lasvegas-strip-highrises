@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { getKcmPosts } from '@/lib/kcm'
 import { breadcrumbListJsonLd } from '@/lib/seo/breadcrumbs'
 import { JsonLd } from '@/lib/seo/json-ld'
+import { RealScoutListings } from '@/components/RealScoutListings'
 
 export const revalidate = 3600
 
@@ -31,6 +32,7 @@ export default async function BlogPage() {
           <p className="text-gray-400">High-rise condo market updates curated for Strip buyers and sellers.</p>
         </div>
       </section>
+        <RealScoutListings campaign="blog" />
       <section className="py-14 px-4">
         <div className="max-w-5xl mx-auto">
           {approved.length === 0 ? (

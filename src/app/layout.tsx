@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | Las Vegas Strip Highrises',
   },
   description:
-    'Las Vegas Strip high-rise condo expert — Panorama Towers, Waldorf Astoria & more. Dr. Jan Duffy, REALTOR® · 702-299-6607.',
+    'Las Vegas Strip high-rise condos: tower-by-tower medians, dues and rental rules, with Dr. Jan Duffy, REALTOR® · 702-299-6607.',
   keywords: ['Las Vegas Strip high-rise condos', 'Turnberry Place condos', 'Palms Place Las Vegas', 'Panorama Towers', 'One Las Vegas', 'Strip condos for sale'],
   openGraph: {
     type: 'website',
@@ -50,6 +50,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <div className="flex-1">{children}</div>
         <Script src="/ads-conversions.js" strategy="afterInteractive" />
+        {/* Follow Up Boss pixel (Widget Tracker WT-XQHVYQWW), live domains only */}
+        <Script id="fub-widget-tracker" strategy="afterInteractive">{`
+if(location.hostname.slice(-11)!==".vercel.app"&&location.hostname!=="localhost"){(function(w,i,d,g,e,t){w["WidgetTrackerObject"]=g;(w[g]=w[g]||function()
+{(w[g].q=w[g].q||[]).push(arguments);}),(w[g].ds=1*new Date());(e="script"),
+(t=d.createElement(e)),(e=d.getElementsByTagName(e)[0]);t.async=1;t.src=i;
+e.parentNode.insertBefore(t,e);})
+(window,"https://widgetbe.com/agent",document,"widgetTracker");
+window.widgetTracker("create", "WT-XQHVYQWW");
+window.widgetTracker("send", "pageview");}
+        `}</Script>
         <Footer />
         <CalendlyScript />
       </body>

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const buildings = [
   { name: 'Turnberry Place', href: '/buildings/turnberry-place' },
@@ -20,9 +21,10 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-gray-950 border-b border-yellow-900/30 shadow-lg">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="font-bold text-lg leading-tight">
-          <span className="text-yellow-400">Las Vegas</span>
-          <span className="text-white"> Strip Highrises</span>
+        <Link href="/" className="flex items-center gap-3 font-bold text-lg leading-tight">
+          <Image src="/dr-jan-duffy-headshot.jpg" alt="Dr. Jan Duffy" width={32} height={32} className="rounded-full" priority />
+          <span><span className="text-yellow-400">Las Vegas</span>
+          <span className="text-white"> Strip Highrises</span></span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
